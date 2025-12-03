@@ -17,6 +17,7 @@ function Header() {
     { href: '#about', label: 'About' },
     { href: '#skills', label: 'Skills' },
     { href: '#projects', label: 'Projects' },
+    { href: '#resume', label: 'Resume' },
     { href: '#contact', label: 'Contact' },
   ]
 
@@ -25,13 +26,16 @@ function Header() {
   }
 
   return (
-    <header className={`header ${isScrolled ? 'header--scrolled' : ''}`}>
+    <header className={`header ${isScrolled ? 'header--scrolled' : ''}`} role="banner">
       <div className="container header__container">
         <a href="#" className="header__logo">
           Portfolio
         </a>
 
-        <nav className={`header__nav ${isMenuOpen ? 'header__nav--open' : ''}`}>
+        <nav
+          className={`header__nav ${isMenuOpen ? 'header__nav--open' : ''}`}
+          aria-label="Primary"
+        >
           <ul className="header__nav-list">
             {navLinks.map((link) => (
               <li key={link.href}>
@@ -48,9 +52,11 @@ function Header() {
         </nav>
 
         <button
+          type="button"
           className={`header__menu-btn ${isMenuOpen ? 'header__menu-btn--open' : ''}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
+          aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={isMenuOpen}
         >
           <span></span>
           <span></span>

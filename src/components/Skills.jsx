@@ -1,38 +1,32 @@
 import './Skills.css'
+import { skills } from './skillsData'
 
-const skills = [
-  {
-    category: 'Frontend',
-    items: [
-      { name: 'Angular', level: 95 },
-      { name: 'React', level: 80 },
-      { name: 'TypeScript', level: 95 },
-      { name: 'HTML/CSS', level: 85 },
-      { name: 'Material UI', level: 90 },
-    ],
-  },
-  {
-    category: 'Backend & Infrastructure',
-    items: [
-      { name: 'Node.js', level: 75 },
-      { name: 'Python', level: 95 },
-      { name: 'C++', level: 90 },
-      { name: 'RESTful APIs', level: 80 },
-      { name: 'gRPC', level: 80 },
-      { name: 'WebSocket', level: 75 },
-      { name: 'GCP', level: 80 },
-    ],
-  },
-  {
-    category: 'Testing & Tools',
-    items: [
-      { name: 'E2E Testing', level: 90 },
-      { name: 'CI/CD', level: 80 },
-      { name: 'Git', level: 90 },
-      { name: 'I18n/A11y', level: 90 },
-    ],
-  },
-]
+function Skill({ name, level }) {
+  return (
+    <div className="skill">
+      <div className="skill__header">
+        <span className="skill__name">{name}</span>
+        <span className="skill__percentage">{level}%</span>
+      </div>
+      <div className="skill__bar">
+        <div className="skill__progress" style={{ width: `${level}%` }}></div>
+      </div>
+    </div>
+  )
+}
+
+function SkillCategory({ category, items }) {
+  return (
+    <div className="skills__category">
+      <h3 className="skills__category-title">{category}</h3>
+      <div className="skills__list">
+        {items.map((skill) => (
+          <Skill key={skill.name} name={skill.name} level={skill.level} />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 function Skills() {
   return (
@@ -41,25 +35,11 @@ function Skills() {
         <h2 className="section-title">Skills & Technologies</h2>
         <div className="skills__grid">
           {skills.map((skillGroup) => (
-            <div key={skillGroup.category} className="skills__category">
-              <h3 className="skills__category-title">{skillGroup.category}</h3>
-              <div className="skills__list">
-                {skillGroup.items.map((skill) => (
-                  <div key={skill.name} className="skill">
-                    <div className="skill__header">
-                      <span className="skill__name">{skill.name}</span>
-                      <span className="skill__percentage">{skill.level}%</span>
-                    </div>
-                    <div className="skill__bar">
-                      <div
-                        className="skill__progress"
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <SkillCategory
+              key={skillGroup.category}
+              category={skillGroup.category}
+              items={skillGroup.items}
+            />
           ))}
         </div>
       </div>

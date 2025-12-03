@@ -10,6 +10,7 @@ A responsive personal portfolio website built with React, Vite, and deployed to 
 - About section with stats
 - Skills section with progress bars
 - Projects showcase with cards
+- Resume section with downloadable PDF and external profile links
 - Contact form
 - Mobile-friendly hamburger menu
 
@@ -151,7 +152,8 @@ portfolio/
 │       ├── firebase-hosting-merge.yml
 │       └── firebase-hosting-pull-request.yml
 ├── public/
-│   └── favicon.svg
+│   ├── favicon.svg
+│   ├── CV_YYYYMMDD.pdf
 ├── src/
 │   ├── components/
 │   │   ├── About.jsx / About.css
@@ -160,8 +162,17 @@ portfolio/
 │   │   ├── Header.jsx / Header.css
 │   │   ├── Hero.jsx / Hero.css
 │   │   ├── Projects.jsx / Projects.css
+│   │   ├── Resume.jsx / Resume.css
+│   │   ├── projectsData.js
+│   │   ├── skillsData.js
 │   │   └── Skills.jsx / Skills.css
+│   ├── assets/
+│   │   └── profile-photo.jpg
+│   ├── preview/
+│   │   ├── CartaVisHomePreview.png
+│   │   └── TodoSharerPreview.png
 │   ├── App.jsx
+│   ├── utils.js
 │   ├── index.css
 │   └── main.jsx
 ├── .firebaserc
