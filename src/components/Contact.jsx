@@ -20,10 +20,18 @@ function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Add your form submission logic here (e.g., Firebase, EmailJS, or custom backend)
-    setStatus('Message sent successfully!')
+
+    const subject = encodeURIComponent(`New message from ${formData.name}`)
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`,
+    )
+
+    // Use the user's email client to send the message via mailto:
+    window.location.href = `mailto:zardazero@gmail.com?subject=${subject}&body=${body}`
+
+    setStatus('Opening your email client to send the message...')
     setFormData({ name: '', email: '', message: '' })
-    setTimeout(() => setStatus(''), 3000)
+    setTimeout(() => setStatus(''), 5000)
   }
 
   return (
