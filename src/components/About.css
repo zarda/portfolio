@@ -26,22 +26,13 @@
   z-index: 0;
 }
 
-.about__image-placeholder {
+.about__photo {
   position: relative;
   width: 100%;
   aspect-ratio: 4/5;
-  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-text) 100%);
+  object-fit: cover;
   border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 1;
-}
-
-.about__image-placeholder span {
-  color: white;
-  font-size: 1.125rem;
-  font-weight: 500;
 }
 
 .about__text p {

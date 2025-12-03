@@ -8,9 +8,11 @@ function About() {
         <div className="about__content">
           <div className="about__image">
             <div className="about__image-wrapper">
-              <div className="about__image-placeholder">
-                <span>About Photo</span>
-              </div>
+              <img
+                src="https://media.licdn.com/dms/image/v2/C5603AQEqYIoOLNmjfg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1589982798100?e=1766620800&v=beta&t=xYM_6t3FM_FW0KJeV9zBFLdCPzJajqLCq7qQyUx56ag"
+                alt="Hengtai Jan"
+                className="about__photo"
+              />
             </div>
           </div>
           <div className="about__text">

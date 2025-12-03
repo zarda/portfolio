@@ -23,9 +23,11 @@ function Hero() {
         </div>
         <div className="hero__image">
           <div className="hero__image-wrapper">
-            <div className="hero__image-placeholder">
-              <span>Your Photo</span>
-            </div>
+            <img
+              src="https://media.licdn.com/dms/image/v2/C5603AQEqYIoOLNmjfg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1589982798100?e=1766620800&v=beta&t=xYM_6t3FM_FW0KJeV9zBFLdCPzJajqLCq7qQyUx56ag"
+              alt="Hengtai Jan"
+              className="hero__photo"
+            />
           </div>
         </div>
       </div>
