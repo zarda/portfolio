@@ -1,4 +1,5 @@
 import './About.css'
+import profilePhoto from '../assets/profile-photo.jpg'
 
 function About() {
   return (
@@ -9,7 +10,7 @@ function About() {
           <div className="about__image">
             <div className="about__image-wrapper">
               <img
-                src="https://media.licdn.com/dms/image/v2/C5603AQEqYIoOLNmjfg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1589982798100?e=1766620800&v=beta&t=xYM_6t3FM_FW0KJeV9zBFLdCPzJajqLCq7qQyUx56ag"
+                src={profilePhoto}
                 alt="Hengtai Jan"
                 className="about__photo"
               />
@@ -37,8 +38,15 @@ function About() {
                 <span className="about__stat-label">Years Experience</span>
               </div>
               <div className="about__stat">
-                <span className="about__stat-number">90% Coverage</span>
-                <span className="about__stat-label">Website Design</span>
+                <a
+                  href="https://leetcode.com/u/hengtai/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="about__stat-link"
+                >
+                  <span className="about__stat-number">716</span>
+                  <span className="about__stat-label">LeetCode Solved</span>
+                </a>
               </div>
               <div className="about__stat">
                 <span className="about__stat-number">PhD</span>

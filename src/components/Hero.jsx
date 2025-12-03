@@ -1,4 +1,5 @@
 import './Hero.css'
+import profilePhoto from '../assets/profile-photo.jpg'
 
 function Hero() {
   return (
@@ -24,7 +25,7 @@ function Hero() {
         <div className="hero__image">
           <div className="hero__image-wrapper">
             <img
-              src="https://media.licdn.com/dms/image/v2/C5603AQEqYIoOLNmjfg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1589982798100?e=1766620800&v=beta&t=xYM_6t3FM_FW0KJeV9zBFLdCPzJajqLCq7qQyUx56ag"
+              src={profilePhoto}
               alt="Hengtai Jan"
               className="hero__photo"
             />
