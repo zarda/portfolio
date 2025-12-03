@@ -42,15 +42,6 @@ export const projects = [
     liveUrl: 'https://cartavis.org/',
     githubUrl: 'https://github.com/CARTAvis',
   },
-  {
-    id: 5,
-    title: 'Beamline Control System',
-    description:
-      "Developed and maintained control systems for distributed devices at Taiwan's synchrotron radiation research facility. Led data center project providing services to all facility users.",
-    tags: ['C++', 'Python', 'JavaScript', 'MySQL'],
-    image: null,
-    liveUrl: 'https://www.nsrrc.org.tw/english/index.aspx',
-  },
 ]
 
 
