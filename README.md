@@ -142,6 +142,9 @@ The project includes two GitHub Actions workflows:
 | `npm run build` | Build for production |
 | `npm run preview` | Preview production build locally |
 | `npm run lint` | Run ESLint |
+| `npm run test` | Run unit tests once with Vitest |
+| `npm run test:watch` | Run unit tests in watch mode |
+| `npm run test:coverage` | Run unit tests with coverage and generate a report in `coverage/` |
 
 ## Project Structure
 
