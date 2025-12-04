@@ -34,7 +34,7 @@ function Contact() {
     )
 
     // Use the user's email client to send the message via mailto:
-    window.location.href = `mailto:zardazero@gmail.com?subject=${subject}&body=${body}`
+    window.location.href = `mailto:hengtaijan@gmail.com?subject=${subject}&body=${body}`
 
     setStatus('Opening your email client to send the message...')
     setFormData({ name: '', email: '', message: '' })
