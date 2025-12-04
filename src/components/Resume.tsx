@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import './Resume.css'
 
 const RESUME_URL = '/Hengtai-Jan-Resume.pdf'
@@ -27,12 +28,24 @@ function ResumeActions() {
 }
 
 function Resume() {
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.3 },
+    transition: { duration: 0.6 }
+  }
 
   return (
     <section className="resume section" id="resume">
       <div className="container">
-        <h2 className="section-title">Resume</h2>
-        <div className="resume__content">
+        <motion.h2 className="section-title" {...fadeInUp}>Resume</motion.h2>
+        <motion.div
+          className="resume__content"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           <div className="resume__summary">
             <p>
               Download my full resume for a detailed view of my experience at Google Nest, Academia
@@ -45,7 +58,7 @@ function Resume() {
             </p>
           </div>
           <ResumeActions />
-        </div>
+        </motion.div>
       </div>
     </section>
   )

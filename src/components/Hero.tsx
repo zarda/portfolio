@@ -1,11 +1,19 @@
+import { motion } from 'framer-motion'
 import './Hero.css'
 import profilePhoto from '../assets/profile-photo.jpg'
 
 function Hero() {
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.6 }
+  }
+
   return (
     <section className="hero" id="hero">
       <div className="container hero__container">
-        <div className="hero__content">
+        <motion.div className="hero__content" {...fadeInUp}>
           <p className="hero__greeting">Hello, I'm</p>
           <h1 className="hero__title">Hengtai Jan</h1>
           <h2 className="hero__subtitle">Software Engineer</h2>
@@ -21,8 +29,14 @@ function Hero() {
               Get In Touch
             </a>
           </div>
-        </div>
-        <div className="hero__image">
+        </motion.div>
+        <motion.div
+          className="hero__image"
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           <div className="hero__image-wrapper">
             <img
               src={profilePhoto}
@@ -30,7 +44,7 @@ function Hero() {
               className="hero__photo"
             />
           </div>
-        </div>
+        </motion.div>
       </div>
       <div className="hero__scroll-indicator">
         <span>Scroll Down</span>

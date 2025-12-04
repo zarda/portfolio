@@ -1,24 +1,31 @@
-import { useState } from 'react'
+import { useState, ChangeEvent, FormEvent } from 'react'
+import { motion } from 'framer-motion'
 import './Contact.css'
 
 const WHATSAPP_URL = 'https://wa.me/886928796022'
 
+interface FormData {
+  name: string
+  email: string
+  message: string
+}
+
 function Contact() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     message: '',
   })
   const [status, setStatus] = useState('')
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
 
     const subject = encodeURIComponent(`New message from ${formData.name}`)
@@ -34,10 +41,17 @@ function Contact() {
     setTimeout(() => setStatus(''), 5000)
   }
 
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.2 },
+    transition: { duration: 0.6 }
+  }
+
   return (
     <section className="contact section" id="contact">
       <div className="container">
-        <h2 className="section-title">Get In Touch</h2>
+        <motion.h2 className="section-title" {...fadeInUp}>Get In Touch</motion.h2>
         <div className="contact__content">
           <div className="contact__info">
             <h3 className="contact__info-title">Let's talk about your project</h3>
@@ -192,7 +206,7 @@ function Contact() {
                 onChange={handleChange}
                 className="contact__form-input contact__form-textarea"
                 placeholder="Your message..."
-                rows="5"
+                rows={5}
                 required
               ></textarea>
             </div>

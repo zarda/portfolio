@@ -1,7 +1,17 @@
 import todoPreview from '../preview/TodoSharerPreview.png'
 import cartaPreview from '../preview/CartaVisHomePreview.png'
 
-export const projects = [
+export interface Project {
+  id: number
+  title: string
+  description: string
+  tags: string[]
+  image: string | null
+  liveUrl: string
+  githubUrl?: string
+}
+
+export const projects: Project[] = [
   {
     id: 1,
     title: 'ToDo List - Angular SSR',

@@ -1,13 +1,27 @@
+import { motion } from 'framer-motion'
 import './About.css'
 import profilePhoto from '../assets/profile-photo.jpg'
 
 function About() {
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.3 },
+    transition: { duration: 0.6 }
+  }
+
   return (
     <section className="about section" id="about">
       <div className="container">
-        <h2 className="section-title">About Me</h2>
+        <motion.h2 className="section-title" {...fadeInUp}>About Me</motion.h2>
         <div className="about__content">
-          <div className="about__image">
+          <motion.div
+            className="about__image"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+          >
             <div className="about__image-wrapper">
               <img
                 src={profilePhoto}
@@ -15,8 +29,14 @@ function About() {
                 className="about__photo"
               />
             </div>
-          </div>
-          <div className="about__text">
+          </motion.div>
+          <motion.div
+            className="about__text"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <p>
               Hi! I'm a Software Engineer with a PhD in Physics and 8+ years of professional
               development experience. I've worked at Google Nest, Academia Sinica, and various
@@ -56,7 +76,7 @@ function About() {
             <a href="#contact" className="btn btn-primary">
               Let's Talk
             </a>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

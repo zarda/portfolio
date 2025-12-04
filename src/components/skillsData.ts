@@ -1,4 +1,14 @@
-export const skills = [
+export interface SkillItem {
+  name: string
+  level: number
+}
+
+export interface SkillCategory {
+  category: string
+  items: SkillItem[]
+}
+
+export const skills: SkillCategory[] = [
   {
     category: 'Frontend',
     items: [

@@ -1,8 +1,15 @@
+import { motion } from 'framer-motion'
 import './Projects.css'
 import { projects } from './projectsData'
 import { getScreenshotUrl } from '../utils'
 
-function ProjectCard({ project }) {
+import { Project } from './projectsData'
+
+interface ProjectCardProps {
+  project: Project
+}
+
+function ProjectCard({ project }: ProjectCardProps) {
   const hasGithub = Boolean(project.githubUrl)
   const imageSrc = project.image ?? getScreenshotUrl(project.liveUrl)
 
@@ -78,10 +85,17 @@ function ProjectCard({ project }) {
 }
 
 function Projects() {
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.2 },
+    transition: { duration: 0.6 }
+  }
+
   return (
     <section className="projects section" id="projects">
       <div className="container">
-        <h2 className="section-title">Featured Projects</h2>
+        <motion.h2 className="section-title" {...fadeInUp}>Featured Projects</motion.h2>
         <div className="projects__grid">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />

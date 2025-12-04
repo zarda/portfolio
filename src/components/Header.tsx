@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react'
 import './Header.css'
 
-function Header() {
+interface HeaderProps {
+  theme: string
+  toggleTheme: () => void
+}
+
+function Header({ theme, toggleTheme }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
@@ -51,17 +56,27 @@ function Header() {
           </ul>
         </nav>
 
-        <button
-          type="button"
-          className={`header__menu-btn ${isMenuOpen ? 'header__menu-btn--open' : ''}`}
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-          aria-expanded={isMenuOpen}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <div className="header__actions">
+          <button
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+          >
+            {theme === 'light' ? '🌙' : '☀️'}
+          </button>
+
+          <button
+            type="button"
+            className={`header__menu-btn ${isMenuOpen ? 'header__menu-btn--open' : ''}`}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isMenuOpen}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
       </div>
     </header>
   )
