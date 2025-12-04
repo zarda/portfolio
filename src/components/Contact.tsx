@@ -2,7 +2,8 @@ import { useState, ChangeEvent, FormEvent } from 'react'
 import { motion } from 'framer-motion'
 import './Contact.css'
 
-const WHATSAPP_URL = 'https://wa.me/886928796022'
+const WHATSAPP_URL = 'https://wa.me/886928796022';
+const EMAIL = 'hengtaijan@gmail.com';
 
 interface FormData {
   name: string
@@ -34,7 +35,7 @@ function Contact() {
     )
 
     // Use the user's email client to send the message via mailto:
-    window.location.href = `mailto:hengtaijan@gmail.com?subject=${subject}&body=${body}`
+    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`
 
     setStatus('Opening your email client to send the message...')
     setFormData({ name: '', email: '', message: '' })
@@ -79,8 +80,8 @@ function Contact() {
                 </div>
                 <div>
                   <span className="contact__detail-label">Email</span>
-                  <a href="mailto:hengtaijan@gmail.com" className="contact__detail-value">
-                    zardazero@gmail.com
+                  <a href={`mailto:${EMAIL}`} className="contact__detail-value">
+                    {EMAIL}
                   </a>
                 </div>
               </div>
