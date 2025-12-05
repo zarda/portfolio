@@ -7,27 +7,61 @@ import Projects from './components/Projects'
 import Resume from './components/Resume'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import {
+  Season,
+  ThemeMode,
+  getCurrentSeason,
+  getSeasonFromUrl,
+  getStoredThemePreferences,
+  storeThemePreferences,
+  getSystemThemeMode,
+  getThemeClass,
+} from './config/themeConfig'
 
 function App() {
-  const [theme, setTheme] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('theme') || 'light'
-    }
-    return 'light'
+  // Initialize season - URL param > stored preference > auto-detect
+  const [season] = useState<Season>(() => {
+    const urlSeason = getSeasonFromUrl()
+    if (urlSeason) return urlSeason
+
+    const { season: storedSeason } = getStoredThemePreferences()
+    return storedSeason || getCurrentSeason()
   })
 
-  useEffect(() => {
-    if (theme === 'dark') {
-      document.body.classList.add('dark-mode')
-    } else {
-      document.body.classList.remove('dark-mode')
-    }
-    localStorage.setItem('theme', theme)
-  }, [theme])
+  // Initialize theme mode - check stored preference or system preference
+  const [mode, setMode] = useState<ThemeMode>(() => {
+    const { mode: storedMode } = getStoredThemePreferences()
+    return storedMode || getSystemThemeMode()
+  })
 
+  // Apply theme classes to body whenever season or mode changes
+  useEffect(() => {
+    // Remove all theme classes first
+    document.body.classList.remove(
+      'theme-spring',
+      'theme-summer',
+      'theme-autumn',
+      'theme-winter',
+      'dark-mode'
+    )
+
+    // Apply current theme classes
+    const themeClass = getThemeClass(season, mode)
+    themeClass.split(' ').forEach((cls) => {
+      if (cls) document.body.classList.add(cls)
+    })
+
+    // Store preferences
+    storeThemePreferences(season, mode)
+  }, [season, mode])
+
+  // Toggle between light and dark mode
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'))
+    setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'))
   }
+
+  // For Header component compatibility
+  const theme = mode
 
   return (
     <div className="app">

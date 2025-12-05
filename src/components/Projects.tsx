@@ -14,24 +14,24 @@ function ProjectCard({ project }: ProjectCardProps) {
   const imageSrc = project.image ?? getScreenshotUrl(project.liveUrl)
 
   return (
-    <article className="project-card">
+    <article className="project-card hover-lift card rounded-lg">
       <div className="project-card__image">
         <img src={imageSrc} alt={`${project.title} preview`} loading="lazy" />
       </div>
       <div className="project-card__content">
-        <h3 className="project-card__title">{project.title}</h3>
-        <p className="project-card__description">{project.description}</p>
-        <div className="project-card__tags">
+        <h3 className="project-card__title fw-semibold">{project.title}</h3>
+        <p className="project-card__description text-muted">{project.description}</p>
+        <div className="project-card__tags flex flex-wrap gap-sm">
           {project.tags.map((tag) => (
-            <span key={tag} className="project-card__tag">
+            <span key={tag} className="project-card__tag badge">
               {tag}
             </span>
           ))}
         </div>
-        <div className="project-card__links">
+        <div className="project-card__links flex gap-md">
           <a
             href={project.liveUrl}
-            className="project-card__link"
+            className="project-card__link flex gap-xs text-muted fw-medium"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -56,7 +56,7 @@ function ProjectCard({ project }: ProjectCardProps) {
           {hasGithub && (
             <a
               href={project.githubUrl}
-              className="project-card__link"
+              className="project-card__link flex gap-xs text-muted fw-medium"
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`View source code for ${project.title} on GitHub`}

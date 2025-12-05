@@ -6,11 +6,11 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="container footer__container">
-        <div className="footer__content">
-          <a href="#" className="footer__logo">
+        <div className="footer__content flex-between flex-wrap gap-lg">
+          <a href="#" className="footer__logo text-gradient fw-bold">
             Portfolio
           </a>
-          <nav className="footer__nav">
+          <nav className="footer__nav flex flex-wrap gap-lg">
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
@@ -18,11 +18,11 @@ function Footer() {
             <a href="#contact">Contact</a>
           </nav>
         </div>
-        <div className="footer__bottom">
-          <p className="footer__copyright">
+        <div className="footer__bottom flex-between flex-wrap gap-sm">
+          <p className="footer__copyright text-sm text-muted">
             &copy; {currentYear} Hengtai Jan. All rights reserved.
           </p>
-          <p className="footer__credit">
+          <p className="footer__credit text-sm text-muted">
             Built with React & Vite
           </p>
         </div>

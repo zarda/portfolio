@@ -8,7 +8,7 @@ const LINKEDIN_URL = 'https://linkedin.com/in/hengtai-jan-188793b8/'
 
 function ResumeActions() {
   return (
-    <div className="resume__actions">
+    <div className="resume__actions flex flex-wrap gap-md flex-center">
       <a href={RESUME_URL} className="btn btn-primary" download>
         Download Resume (PDF)
       </a>
@@ -40,19 +40,19 @@ function Resume() {
       <div className="container">
         <motion.h2 className="section-title" {...fadeInUp}>Resume</motion.h2>
         <motion.div
-          className="resume__content"
+          className="resume__content text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="resume__summary">
-            <p>
+          <div className="resume__summary flex-col gap-md">
+            <p className="text-muted">
               Download my full resume for a detailed view of my experience at Google Nest, Academia
               Sinica, and other roles, including work on smart home tools, astronomical
               visualization, and large-scale control systems.
             </p>
-            <p>
+            <p className="text-muted">
               The PDF includes project highlights, tech stack details, and a concise overview of my
               academic background and publications.
             </p>

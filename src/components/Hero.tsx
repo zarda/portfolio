@@ -14,14 +14,14 @@ function Hero() {
     <section className="hero" id="hero">
       <div className="container hero__container">
         <motion.div className="hero__content" {...fadeInUp}>
-          <p className="hero__greeting">Hello, I'm</p>
+          <p className="hero__greeting text-gradient fw-semibold">Hello, I'm</p>
           <h1 className="hero__title">Hengtai Jan</h1>
           <h2 className="hero__subtitle">Software Engineer</h2>
           <p className="hero__description">
             I build exceptional web applications with Angular, React, and modern technologies.
             Focused on performance, accessibility, and clean architecture.
           </p>
-          <div className="hero__buttons">
+          <div className="hero__buttons flex gap-md flex-wrap">
             <a href="#projects" className="btn btn-primary">
               View My Work
             </a>
@@ -31,7 +31,7 @@ function Hero() {
           </div>
         </motion.div>
         <motion.div
-          className="hero__image"
+          className="hero__image flex-center"
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -46,7 +46,7 @@ function Hero() {
           </div>
         </motion.div>
       </div>
-      <div className="hero__scroll-indicator">
+      <div className="hero__scroll-indicator flex-col flex-center gap-sm">
         <span>Scroll Down</span>
         <div className="hero__scroll-arrow"></div>
       </div>

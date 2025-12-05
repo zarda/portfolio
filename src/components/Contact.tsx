@@ -109,7 +109,7 @@ function Contact() {
               </div>
             </div>
             <div className="contact__socials">
-              <a href="https://github.com/zarda" className="contact__social" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/zarda" className="contact__social hover-glow" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -123,7 +123,7 @@ function Contact() {
               </a>
               <a
                 href={WHATSAPP_URL}
-                className="contact__social"
+                className="contact__social hover-glow"
                 aria-label="WhatsApp"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -139,7 +139,7 @@ function Contact() {
                   <path d="M12.04 2.003c-5.51 0-9.98 4.468-9.98 9.98 0 1.76.46 3.46 1.34 4.97L2 22l5.2-1.37c1.45.79 3.08 1.21 4.84 1.21h.01c5.51 0 9.98-4.47 9.98-9.98 0-2.67-1.04-5.18-2.93-7.06-1.9-1.89-4.41-2.93-7.06-2.93zm0 1.8c2.1 0 4.07.82 5.56 2.3 1.49 1.49 2.31 3.46 2.31 5.56 0 4.34-3.54 7.88-7.9 7.88-1.52 0-2.99-.43-4.27-1.25l-.31-.19-3.08.81.82-3.01-.2-.31c-.84-1.32-1.28-2.86-1.28-4.45 0-4.34 3.53-7.88 7.85-7.88zm-3.17 3.3c-.14 0-.36.05-.55.24-.18.19-.72.7-.72 1.7 0 1 .74 1.96.84 2.09.1.14 1.45 2.3 3.53 3.22 1.74.77 2.09.7 2.47.66.38-.04 1.21-.49 1.38-.96.17-.47.17-.87.12-.96-.05-.09-.19-.14-.4-.24-.21-.1-1.21-.6-1.4-.66-.19-.07-.33-.1-.47.1-.14.19-.54.66-.66.8-.12.14-.24.16-.45.07-.21-.09-.88-.32-1.68-1.02-.62-.55-1.03-1.24-1.15-1.45-.12-.21-.01-.32.08-.41.08-.08.21-.24.31-.36.1-.12.14-.19.21-.33.07-.14.04-.26-.02-.36-.07-.1-.61-1.44-.84-1.97-.22-.53-.44-.46-.6-.47z" />
                 </svg>
               </a>
-              <a href="https://linkedin.com/in/hengtai-jan-188793b8/" className="contact__social" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+              <a href="https://linkedin.com/in/hengtai-jan-188793b8/" className="contact__social hover-glow" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -151,7 +151,7 @@ function Contact() {
                   <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                 </svg>
               </a>
-              <a href="https://scholar.google.com/citations?hl=zh-TW&user=HFZCbFwAAAAJ" className="contact__social" aria-label="Google Scholar" target="_blank" rel="noopener noreferrer">
+              <a href="https://scholar.google.com/citations?hl=zh-TW&user=HFZCbFwAAAAJ" className="contact__social hover-glow" aria-label="Google Scholar" target="_blank" rel="noopener noreferrer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -165,9 +165,9 @@ function Contact() {
               </a>
             </div>
           </div>
-          <form className="contact__form" onSubmit={handleSubmit}>
-            <div className="contact__form-group">
-              <label htmlFor="name" className="contact__form-label">
+          <form className="contact__form card rounded-lg" onSubmit={handleSubmit}>
+            <div className="contact__form-group form-group">
+              <label htmlFor="name" className="contact__form-label form-label">
                 Name
               </label>
               <input
@@ -176,13 +176,13 @@ function Contact() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="contact__form-input"
+                className="contact__form-input form-input"
                 placeholder="Your name"
                 required
               />
             </div>
-            <div className="contact__form-group">
-              <label htmlFor="email" className="contact__form-label">
+            <div className="contact__form-group form-group">
+              <label htmlFor="email" className="contact__form-label form-label">
                 Email
               </label>
               <input
@@ -191,13 +191,13 @@ function Contact() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="contact__form-input"
+                className="contact__form-input form-input"
                 placeholder="your.email@example.com"
                 required
               />
             </div>
-            <div className="contact__form-group">
-              <label htmlFor="message" className="contact__form-label">
+            <div className="contact__form-group form-group">
+              <label htmlFor="message" className="contact__form-label form-label">
                 Message
               </label>
               <textarea
@@ -205,7 +205,7 @@ function Contact() {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                className="contact__form-input contact__form-textarea"
+                className="contact__form-input contact__form-textarea form-input form-textarea"
                 placeholder="Your message..."
                 rows={5}
                 required
