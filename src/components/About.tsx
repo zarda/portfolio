@@ -64,7 +64,7 @@ function About() {
                   rel="noopener noreferrer"
                   className="about__stat-link"
                 >
-                  <span className="about__stat-number">716</span>
+                  <span className="about__stat-number">700+</span>
                   <span className="about__stat-label">LeetCode Solved</span>
                 </a>
               </div>

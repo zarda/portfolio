@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "hengtai-jan",
+    "dev": "portfolio-2f662",
     "prod": "hengtai-jan"
   },
   "targets": {},
