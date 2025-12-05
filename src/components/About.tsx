@@ -52,7 +52,7 @@ function About() {
               visualization software, and industrial inspection systems. I bring a scientific
               approach to software engineering.
             </p>
-            <div className="about__stats flex gap-lg flex-wrap">
+            <div className="about__stats flex gap-lg">
               <div className="about__stat hover-lift text-center">
                 <span className="about__stat-number text-gradient fw-bold">8+</span>
                 <span className="about__stat-label text-light text-sm">Years Experience</span>
@@ -73,9 +73,11 @@ function About() {
                 <span className="about__stat-label text-light text-sm">Physics, NSYSU</span>
               </div>
             </div>
-            <a href="#contact" className="btn btn-primary">
-              Let's Talk
-            </a>
+            <div className="text-center">
+              <a href="#contact" className="btn btn-primary mt-lg">
+                Let's Talk
+              </a>
+            </div>
           </motion.div>
         </div>
       </div>

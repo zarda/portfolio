@@ -405,6 +405,7 @@ button {
 
 .flex-wrap {
   flex-wrap: wrap;
+  flex: auto;
 }
 
 .items-center {
@@ -564,6 +565,11 @@ button {
   width: auto;
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Margin Bottom Utilities */
 .mb-xs {
   margin-bottom: var(--space-xs);
@@ -583,6 +589,27 @@ button {
 
 .mb-xl {
   margin-bottom: var(--space-xl);
+}
+
+/* Margin Top Utilities */
+.mt-xs {
+  margin-top: var(--space-xs);
+}
+
+.mt-sm {
+  margin-top: var(--space-sm);
+}
+
+.mt-md {
+  margin-top: var(--space-md);
+}
+
+.mt-lg {
+  margin-top: var(--space-lg);
+}
+
+.mt-xl {
+  margin-top: var(--space-xl);
 }
 
 /* ==========================================
@@ -1671,15 +1698,15 @@ button {
 .about__description {
   color: var(--color-text-light);
   margin-bottom: var(--space-xl);
-  font-size: 1.0625rem;
-  line-height: 1.8;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 /* .about__stats uses .flex .gap-lg .flex-wrap utility classes in component */
 
 .about__stat {
   text-align: center;
-  padding: var(--space-lg);
+  padding: var(--space-md);
   background: var(--color-background-alt);
   border-radius: var(--radius-lg);
   transition: var(--transition);
@@ -1694,7 +1721,7 @@ button {
 
 .about__stat-number {
   display: block;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
   background: var(--gradient-primary);
   -webkit-background-clip: text;
@@ -1746,6 +1773,17 @@ button {
   .about__content {
     grid-template-columns: 1fr;
     gap: var(--space-2xl);
+    text-align: center;
+  }
+
+  .about__description {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
+  }
+
+  .about__stats {
+    justify-content: center;
   }
 
   .about__image-wrapper {
