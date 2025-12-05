@@ -547,6 +547,44 @@ button {
   background-clip: text;
 }
 
+.text-success {
+  color: var(--color-success);
+}
+
+.text-error {
+  color: var(--color-error);
+}
+
+/* Width Utilities */
+.w-full {
+  width: 100%;
+}
+
+.w-auto {
+  width: auto;
+}
+
+/* Margin Bottom Utilities */
+.mb-xs {
+  margin-bottom: var(--space-xs);
+}
+
+.mb-sm {
+  margin-bottom: var(--space-sm);
+}
+
+.mb-md {
+  margin-bottom: var(--space-md);
+}
+
+.mb-lg {
+  margin-bottom: var(--space-lg);
+}
+
+.mb-xl {
+  margin-bottom: var(--space-xl);
+}
+
 /* ==========================================
    VISUAL EFFECT UTILITIES
    ========================================== */
@@ -956,7 +994,12 @@ button {
 
 .form-textarea {
   resize: vertical;
-  min-height: 120px;
+  min-height: 150px;
+  line-height: 1.7;
+}
+
+.form-textarea:focus {
+  min-height: 180px;
 }
 
 /* ==========================================
@@ -981,6 +1024,80 @@ button {
 }
 
 .badge-gradient {
+  background: var(--gradient-primary);
+  color: white;
+}
+
+/* ==========================================
+   SOCIAL ICON COMPONENTS
+   ========================================== */
+
+.social-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-background-alt);
+  border-radius: var(--radius-full);
+  color: var(--color-text);
+  transition: var(--transition);
+  border: 1px solid var(--color-border);
+}
+
+.social-icon:hover {
+  background: var(--gradient-primary);
+  color: white;
+  border-color: transparent;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
+}
+
+/* ==========================================
+   ICON BOX COMPONENTS
+   ========================================== */
+
+.icon-box {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--color-primary-rgb), 0.1);
+  border-radius: var(--radius-lg);
+  color: var(--color-primary);
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.icon-box-sm {
+  width: 40px;
+  height: 40px;
+}
+
+.icon-box-lg {
+  width: 64px;
+  height: 64px;
+}
+
+/* ==========================================
+   INFO CARD COMPONENTS
+   ========================================== */
+
+.info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.info-card:hover {
+  background: var(--color-background-alt);
+}
+
+.info-card:hover .icon-box {
   background: var(--gradient-primary);
   color: white;
 }
@@ -1187,19 +1304,9 @@ button {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-.header__toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--color-text);
-  cursor: pointer;
-  font-size: 1.5rem;
-}
-
 /* Header Responsive Styles */
 @media (max-width: 768px) {
 
-  .header__toggle,
   .header__menu-btn {
     display: flex;
   }
@@ -1556,10 +1663,8 @@ button {
    ABOUT COMPONENT
    ========================================== */
 
+/* Uses .grid-2 .gap-xl utility classes in component */
 .about__content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-3xl);
   align-items: center;
 }
 
@@ -1570,10 +1675,7 @@ button {
   line-height: 1.8;
 }
 
-.about__stats {
-  display: flex;
-  gap: var(--space-xl);
-}
+/* .about__stats uses .flex .gap-lg .flex-wrap utility classes in component */
 
 .about__stat {
   text-align: center;
@@ -1668,11 +1770,7 @@ button {
    SKILLS COMPONENT
    ========================================== */
 
-.skills__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-xl);
-}
+/* .skills__grid uses .grid-3 .gap-lg utility classes in component */
 
 .skills__category {
   background: var(--color-background-alt);
@@ -1720,15 +1818,10 @@ button {
   border-bottom: 2px solid var(--color-border);
 }
 
-.skills__list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-}
+/* .skills__list uses .flex-col .gap-md utility classes in component */
 
+/* .skill__header uses .flex-between utility class in component */
 .skill__header {
-  display: flex;
-  justify-content: space-between;
   margin-bottom: var(--space-sm);
 }
 
@@ -1926,20 +2019,15 @@ button {
   color: white;
 }
 
+/* .project-card__links uses .flex .gap-md utility classes in component */
 .project-card__links {
-  display: flex;
-  gap: var(--space-md);
   padding-top: var(--space-md);
   border-top: 1px solid var(--color-border);
 }
 
+/* .project-card__link uses .flex .gap-xs .text-muted .fw-medium utilities in component */
 .project-card__link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-sm);
-  color: var(--color-text-light);
   font-size: 0.875rem;
-  font-weight: 500;
   transition: var(--transition);
   padding: var(--space-xs) 0;
 }
@@ -2020,180 +2108,25 @@ button {
    CONTACT COMPONENT
    ========================================== */
 
-.contact__content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-3xl);
-}
+/* Most contact styles now use utility classes:
+   .grid-2 .gap-xl for content, .social-icon, .icon-box, .info-card, .form-* */
 
-.contact__info-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: var(--space-md);
-  color: var(--color-text);
-}
+/* Removed: contact__details, contact__detail, contact__detail-icon,
+   contact__detail-label, contact__detail-value - now uses utility classes */
 
-.contact__info-text {
-  color: var(--color-text-light);
-  margin-bottom: var(--space-xl);
-  line-height: 1.8;
-}
+/* Removed: contact__socials, contact__social - now uses .social-icon utility */
 
-.contact__details {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-  margin-bottom: var(--space-xl);
-}
-
-.contact__detail {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-md);
-  padding: var(--space-md);
-  border-radius: var(--radius-md);
-  transition: var(--transition);
-}
-
-.contact__detail:hover {
-  background: var(--color-background-alt);
-}
-
-.contact__detail-icon {
-  width: 52px;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(var(--color-primary-rgb), 0.1);
-  border-radius: var(--radius-lg);
-  color: var(--color-primary);
-  flex-shrink: 0;
-  transition: var(--transition);
-}
-
-.contact__detail:hover .contact__detail-icon {
-  background: var(--gradient-primary);
-  color: white;
-}
-
-.contact__detail-label {
-  display: block;
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-xs);
-}
-
-.contact__detail-value {
-  font-weight: 500;
-  color: var(--color-text);
-  transition: var(--transition);
-}
-
-a.contact__detail-value:hover {
-  color: var(--color-primary);
-}
-
-.contact__socials {
-  display: flex;
-  gap: var(--space-md);
-}
-
-.contact__social {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-background-alt);
-  border-radius: var(--radius-full);
-  color: var(--color-text);
-  transition: var(--transition);
-  border: 1px solid var(--color-border);
-}
-
-.contact__social:hover {
-  background: var(--gradient-primary);
-  color: white;
-  border-color: transparent;
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-glow);
-}
-
-.contact__form {
-  background: var(--color-background-alt);
-  padding: var(--space-xl);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
-}
-
-.contact__form-group {
-  margin-bottom: var(--space-lg);
-}
-
-.contact__form-label {
-  display: block;
-  font-weight: 500;
-  margin-bottom: var(--space-sm);
-  color: var(--color-text);
-}
-
-.contact__form-input {
-  width: 100%;
-  padding: 0.875rem var(--space-md);
-  font-size: 1rem;
-  font-family: inherit;
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-background);
-  color: var(--color-text);
-  transition: var(--transition);
-}
-
-.contact__form-input:focus {
-  outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.1);
-}
-
-.contact__form-input::placeholder {
-  color: var(--color-text-muted);
-}
-
-.contact__form-textarea {
-  resize: vertical;
-  min-height: 140px;
-}
-
-.contact__form-status {
-  color: var(--color-success);
-  font-weight: 500;
-  margin-bottom: var(--space-md);
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-}
-
-.contact__form-btn {
-  width: 100%;
-}
+/* Removed: contact__form, contact__form-textarea, contact__form-status, contact__form-btn
+   - now uses .card, .form-*, utility classes */
 
 /* Contact Responsive Styles */
 @media (max-width: 992px) {
   .contact__content {
-    grid-template-columns: 1fr;
-    gap: var(--space-2xl);
-  }
-}
-
-@media (max-width: 576px) {
-  .contact__form {
-    padding: var(--space-lg);
+    display: block;
   }
 
-  .contact__info-title {
-    font-size: 1.25rem;
+  .contact__info {
+    margin-bottom: var(--space-2xl);
   }
 }
 
