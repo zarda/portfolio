@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import './Header.css'
+
 
 interface HeaderProps {
   theme: string

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import './Skills.css'
+
 import { skills } from './skillsData'
 
 import { SkillItem as SkillItemType } from './skillsData'

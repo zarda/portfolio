@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import './About.css'
+
 import profilePhoto from '../assets/profile-photo.jpg'
 
 function About() {

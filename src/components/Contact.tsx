@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from 'react'
 import { motion } from 'framer-motion'
-import './Contact.css'
+
 
 const WHATSAPP_URL = 'https://wa.me/886928796022';
 const EMAIL = 'hengtaijan@gmail.com';

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import './Resume.css'
+
 
 const RESUME_URL = '/Hengtai-Jan-Resume.pdf'
 const RESUME_DOC_URL =
