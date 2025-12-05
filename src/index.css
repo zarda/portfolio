@@ -405,7 +405,6 @@ button {
 
 .flex-wrap {
   flex-wrap: wrap;
-  flex: auto;
 }
 
 .items-center {
