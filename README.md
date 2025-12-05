@@ -16,7 +16,7 @@ A responsive personal portfolio website built with React, Vite, and deployed to 
 
 ## Tech Stack
 
-- **Frontend**: React 18, Vite
+- **Frontend**: React 19, Vite
 - **Styling**: CSS3 with CSS Variables
 - **Hosting**: Firebase Hosting
 - **CI/CD**: GitHub Actions
@@ -159,25 +159,25 @@ portfolio/
 │   ├── CV_YYYYMMDD.pdf
 ├── src/
 │   ├── components/
-│   │   ├── About.jsx / About.css
-│   │   ├── Contact.jsx / Contact.css
-│   │   ├── Footer.jsx / Footer.css
-│   │   ├── Header.jsx / Header.css
-│   │   ├── Hero.jsx / Hero.css
-│   │   ├── Projects.jsx / Projects.css
-│   │   ├── Resume.jsx / Resume.css
-│   │   ├── projectsData.js
-│   │   ├── skillsData.js
-│   │   └── Skills.jsx / Skills.css
+│   │   ├── About.tsx / About.css
+│   │   ├── Contact.tsx / Contact.css
+│   │   ├── Footer.tsx / Footer.css
+│   │   ├── Header.tsx / Header.css
+│   │   ├── Hero.tsx / Hero.css
+│   │   ├── Projects.tsx / Projects.css
+│   │   ├── Resume.tsx / Resume.css
+│   │   ├── projectsData.ts
+│   │   ├── skillsData.ts
+│   │   └── Skills.tsx / Skills.css
 │   ├── assets/
 │   │   └── profile-photo.jpg
 │   ├── preview/
 │   │   ├── CartaVisHomePreview.png
 │   │   └── TodoSharerPreview.png
-│   ├── App.jsx
-│   ├── utils.js
+│   ├── App.tsx
+│   ├── utils.ts
 │   ├── index.css
-│   └── main.jsx
+│   └── main.tsx
 ├── .firebaserc
 ├── .gitignore
 ├── eslint.config.js

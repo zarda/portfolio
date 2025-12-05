@@ -28,7 +28,7 @@ describe('Contact', () => {
 
     fireEvent.click(screen.getByRole('button', { name: /send message/i }))
 
-    expect(window.location.href).toContain('mailto:zardazero@gmail.com')
+    expect(window.location.href).toContain('mailto:hengtaijan@gmail.com')
     expect(window.location.href).toContain('Jane%20Doe')
     expect(screen.getByText(/opening your email client/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/name/i)).toHaveValue('')
@@ -44,7 +44,7 @@ describe('Contact', () => {
   it('exposes static contact channels', () => {
     render(<Contact />)
 
-    expect(screen.getByRole('link', { name: /zardazero@gmail.com/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /hengtaijan@gmail.com/i })).toHaveAttribute(
       'href',
       'mailto:hengtaijan@gmail.com',
     )
