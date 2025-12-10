@@ -14,10 +14,10 @@ function Hero() {
     <section className="hero" id="hero">
       <div className="container hero__container">
         <motion.div className="hero__content" {...fadeInUp}>
-          <p className="hero__greeting text-gradient fw-semibold">Hello, I'm</p>
-          <h1 className="hero__title">Hengtai Jan</h1>
-          <h2 className="hero__subtitle">Software Engineer</h2>
-          <p className="hero__description">
+          <p className="hero__greeting text-gradient fw-semibold text-xl mb-sm">Hello, I'm</p>
+          <h1 className="hero__title mb-sm">Hengtai Jan</h1>
+          <h2 className="hero__subtitle fw-semibold mb-lg">Software Engineer</h2>
+          <p className="hero__description text-light mb-xl">
             I build exceptional web applications with Angular, React, and modern technologies.
             Focused on performance, accessibility, and clean architecture.
           </p>
@@ -41,12 +41,12 @@ function Hero() {
             <img
               src={profilePhoto}
               alt="Hengtai Jan"
-              className="hero__photo"
+              className="hero__photo rounded-xl shadow-lg"
             />
           </div>
         </motion.div>
       </div>
-      <div className="hero__scroll-indicator flex-col flex-center gap-sm">
+      <div className="hero__scroll-indicator text-light text-sm">
         <span>Scroll Down</span>
         <div className="hero__scroll-arrow"></div>
       </div>

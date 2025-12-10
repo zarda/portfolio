@@ -32,8 +32,8 @@ function Header({ theme, toggleTheme }: HeaderProps) {
 
   return (
     <header className={`header glass ${isScrolled ? 'header--scrolled' : ''}`} role="banner">
-      <div className="container header__container flex-between">
-        <a href="#" className="header__logo text-gradient fw-bold">
+      <div className="container flex-between h-full">
+        <a href="#" className="header__logo text-gradient fw-bold text-2xl">
           Portfolio
         </a>
 
@@ -41,7 +41,7 @@ function Header({ theme, toggleTheme }: HeaderProps) {
           className={`header__nav ${isMenuOpen ? 'header__nav--open' : ''}`}
           aria-label="Primary"
         >
-          <ul className="header__nav-list flex gap-lg">
+          <ul className="header__nav-list flex gap-xl">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
@@ -56,7 +56,7 @@ function Header({ theme, toggleTheme }: HeaderProps) {
           </ul>
         </nav>
 
-        <div className="header__actions flex gap-md">
+        <div className="header__actions flex gap-md items-center">
           <button
             className="theme-toggle rounded-full flex-center"
             onClick={toggleTheme}

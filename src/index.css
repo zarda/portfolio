@@ -342,6 +342,13 @@ button {
   position: relative;
 }
 
+/* iOS Safari fix for hash link scroll offset */
+@supports (-webkit-touch-callout: none) {
+  .section {
+    scroll-margin-top: var(--header-height);
+  }
+}
+
 .section-title {
   font-size: 2.25rem;
   font-weight: 700;
@@ -564,6 +571,11 @@ button {
   width: auto;
 }
 
+/* Height Utilities */
+.h-full {
+  height: 100%;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -609,6 +621,10 @@ button {
 
 .mt-xl {
   margin-top: var(--space-xl);
+}
+
+.mt-2xl {
+  margin-top: var(--space-2xl);
 }
 
 /* ==========================================
@@ -1205,20 +1221,10 @@ button {
   background: rgba(15, 23, 42, 0.85);
 }
 
-.header__container {
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+/* .header__container replaced with .container .flex-between .h-full utilities */
 
+/* .header__logo uses .text-gradient .fw-bold .text-2xl utilities in component */
 .header__logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   transition: var(--transition);
 }
 
@@ -1226,6 +1232,7 @@ button {
   transform: scale(1.05);
 }
 
+/* .header__nav-list uses .flex .gap-xl utilities in component */
 .header__nav-list {
   display: flex;
   gap: var(--space-xl);
@@ -1261,11 +1268,7 @@ button {
   width: 100%;
 }
 
-.header__actions {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-}
+/* .header__actions uses .flex .gap-md .items-center utilities in component */
 
 .theme-toggle {
   background: transparent;
@@ -1419,22 +1422,16 @@ button {
   z-index: 1;
 }
 
+/* .hero__greeting uses .text-gradient .fw-semibold .text-xl .mb-sm utilities in component */
 .hero__greeting {
-  font-size: 1.25rem;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 600;
-  margin-bottom: var(--space-sm);
   display: inline-block;
 }
 
+/* .hero__title uses .mb-sm utility in component */
 .hero__title {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 800;
   line-height: 1.1;
-  margin-bottom: var(--space-sm);
   background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary) 50%, var(--color-accent) 100%);
   background-size: 200% 200%;
   animation: gradientFlow 5s ease infinite;
@@ -1443,27 +1440,27 @@ button {
   background-clip: text;
 }
 
+/* .hero__subtitle uses .fw-semibold .mb-lg utilities in component */
 .hero__subtitle {
   font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 600;
   color: var(--color-secondary);
-  margin-bottom: var(--space-lg);
 }
 
+/* .hero__description uses .text-light .mb-xl utilities in component */
 .hero__description {
   font-size: 1.125rem;
-  color: var(--color-text-light);
   max-width: 520px;
-  margin-bottom: var(--space-xl);
   line-height: 1.7;
 }
 
+/* .hero__buttons uses .flex .gap-md .flex-wrap utilities in component */
 .hero__buttons {
   display: flex;
   gap: var(--space-md);
   flex-wrap: wrap;
 }
 
+/* .hero__image uses .flex-center utility in component */
 .hero__image {
   display: flex;
   justify-content: center;
@@ -1514,14 +1511,13 @@ button {
   opacity: 1;
 }
 
+/* .hero__photo uses .rounded-xl .shadow-lg utilities in component */
 .hero__photo {
   position: relative;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: var(--radius-xl);
   z-index: 1;
-  box-shadow: var(--shadow-lg);
   transition: var(--transition);
 }
 
@@ -1529,6 +1525,7 @@ button {
   transform: scale(1.02);
 }
 
+/* .hero__scroll-indicator uses .text-light .text-sm utilities in component */
 .hero__scroll-indicator {
   position: absolute;
   bottom: var(--space-xl);
@@ -1538,8 +1535,6 @@ button {
   flex-direction: column;
   align-items: center;
   gap: var(--space-sm);
-  color: var(--color-text-light);
-  font-size: 0.875rem;
   animation: bounce 2s infinite;
   cursor: pointer;
   transition: var(--transition);
@@ -1689,25 +1684,32 @@ button {
    ABOUT COMPONENT
    ========================================== */
 
-/* Uses .grid-2 .gap-xl utility classes in component */
+/* .about__content uses .grid-2 .gap-xl .items-center utilities in component */
 .about__content {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--space-xl);
   align-items: center;
 }
 
+/* .about__description uses .text-light .mb-xl utilities in component */
 .about__description {
-  color: var(--color-text-light);
-  margin-bottom: var(--space-xl);
   font-size: 1rem;
   line-height: 1.5;
 }
 
-/* .about__stats uses .flex .gap-lg .flex-wrap utility classes in component */
+/* .about__stats uses .flex .flex-wrap .gap-lg .justify-center utilities in component */
+.about__stats {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--space-md);
+  justify-content: center;
+}
 
+/* .about__stat uses .text-center .rounded-lg .hover-lift utilities in component */
 .about__stat {
-  text-align: center;
   padding: var(--space-md);
   background: var(--color-background-alt);
-  border-radius: var(--radius-lg);
   transition: var(--transition);
   border: 1px solid transparent;
 }
@@ -1718,22 +1720,12 @@ button {
   box-shadow: var(--shadow-md);
 }
 
+/* .about__stat-number uses .text-gradient .fw-bold .text-2xl .mb-xs utilities in component */
 .about__stat-number {
   display: block;
-  font-size: 1.5rem;
-  font-weight: 700;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: var(--space-xs);
 }
 
-.about__stat-label {
-  font-size: 0.875rem;
-  color: var(--color-text-light);
-  font-weight: 500;
-}
+/* .about__stat-label uses .text-light .text-sm .fw-medium utilities in component */
 
 .about__image-wrapper {
   position: relative;
@@ -1809,10 +1801,10 @@ button {
 
 /* .skills__grid uses .grid-3 .gap-lg utility classes in component */
 
+/* .skills__category uses .hover-lift .rounded-lg utilities in component */
 .skills__category {
   background: var(--color-background-alt);
   padding: var(--space-xl);
-  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
   border: 1px solid var(--color-border);
@@ -1843,35 +1835,22 @@ button {
   transform: scaleX(1);
 }
 
+/* .skills__category-title uses .text-gradient .fw-semibold .text-xl .mb-lg utilities in component */
 .skills__category-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: var(--space-lg);
   padding-bottom: var(--space-md);
   border-bottom: 2px solid var(--color-border);
 }
 
 /* .skills__list uses .flex-col .gap-md utility classes in component */
 
-/* .skill__header uses .flex-between utility class in component */
-.skill__header {
-  margin-bottom: var(--space-sm);
-}
+/* .skill__header uses .flex-between .mb-sm utilities in component */
 
+/* .skill__name uses .fw-medium utility in component */
 .skill__name {
-  font-weight: 500;
   color: var(--color-text);
 }
 
-.skill__percentage {
-  font-size: 0.875rem;
-  color: var(--color-text-light);
-  font-weight: 500;
-}
+/* .skill__percentage uses .text-sm .text-light .fw-medium utilities in component */
 
 .skill__bar {
   height: 8px;
@@ -1932,9 +1911,9 @@ button {
   gap: var(--space-xl);
 }
 
+/* .project-card uses .hover-lift .rounded-lg utilities in component */
 .project-card {
   background: var(--color-background);
-  border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
@@ -2015,10 +1994,8 @@ button {
   padding: var(--space-lg);
 }
 
+/* .project-card__title uses .fw-semibold .text-xl .mb-md utilities in component */
 .project-card__title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: var(--space-md);
   color: var(--color-text);
   transition: var(--transition);
 }
@@ -2027,27 +2004,18 @@ button {
   color: var(--color-primary);
 }
 
+/* .project-card__description uses .text-light .text-sm .mb-md utilities in component */
 .project-card__description {
-  color: var(--color-text-light);
-  font-size: 0.9375rem;
-  margin-bottom: var(--space-md);
   line-height: 1.7;
 }
 
-.project-card__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-lg);
-}
+/* .project-card__tags uses .flex .flex-wrap .gap-sm .mb-lg utilities in component */
 
+/* .project-card__tag uses .badge .rounded-full .text-sm .fw-medium utilities in component */
 .project-card__tag {
   padding: var(--space-xs) var(--space-md);
   background: rgba(var(--color-primary-rgb), 0.1);
   color: var(--color-primary);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  border-radius: var(--radius-full);
   transition: var(--transition);
 }
 
@@ -2062,9 +2030,8 @@ button {
   border-top: 1px solid var(--color-border);
 }
 
-/* .project-card__link uses .flex .gap-xs .text-muted .fw-medium utilities in component */
+/* .project-card__link uses .flex .items-center .gap-xs .text-muted .fw-medium .text-sm utilities in component */
 .project-card__link {
-  font-size: 0.875rem;
   transition: var(--transition);
   padding: var(--space-xs) 0;
 }
@@ -2074,10 +2041,7 @@ button {
   transform: translateX(3px);
 }
 
-.projects__cta {
-  text-align: center;
-  margin-top: var(--space-2xl);
-}
+/* .projects__cta uses .text-center .mt-2xl utilities in component */
 
 /* Projects Responsive Styles */
 @media (max-width: 768px) {
@@ -2104,29 +2068,21 @@ button {
    RESUME COMPONENT
    ========================================== */
 
+/* .resume__content uses .text-center .mx-auto utilities in component */
 .resume__content {
   max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
 }
 
+/* .resume__summary uses .flex-col .gap-md .text-light .mb-xl utilities in component */
 .resume__summary {
-  color: var(--color-text-light);
   font-size: 1rem;
   line-height: 1.8;
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
-  margin-bottom: var(--space-xl);
 }
 
-.resume__actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-md);
-  margin-bottom: var(--space-md);
-}
+/* .resume__actions replaced with .flex .flex-wrap .gap-md .justify-center .mb-md utilities in component */
 
 .resume__hint {
   font-size: 0.8125rem;
@@ -2191,21 +2147,14 @@ button {
   border-radius: var(--radius-full);
 }
 
+/* .footer__content uses .flex-between .flex-wrap .gap-lg utilities in component */
 .footer__content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding-bottom: var(--space-xl);
   border-bottom: 1px solid var(--color-border);
 }
 
+/* .footer__logo uses .text-gradient .fw-bold .text-2xl utilities in component */
 .footer__logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   transition: var(--transition);
 }
 
@@ -2213,6 +2162,7 @@ button {
   transform: scale(1.05);
 }
 
+/* .footer__nav uses .flex .flex-wrap .gap-lg utilities in component */
 .footer__nav {
   display: flex;
   gap: var(--space-xl);
@@ -2243,6 +2193,7 @@ button {
   width: 100%;
 }
 
+/* .footer__bottom uses .flex-between .flex-wrap .gap-sm utilities in component */
 .footer__bottom {
   display: flex;
   justify-content: space-between;
@@ -2250,6 +2201,7 @@ button {
   padding-top: var(--space-lg);
 }
 
+/* .footer__copyright and .footer__credit use .text-sm .text-muted utilities in component */
 .footer__copyright,
 .footer__credit {
   font-size: 0.875rem;

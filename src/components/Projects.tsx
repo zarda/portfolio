@@ -14,16 +14,16 @@ function ProjectCard({ project }: ProjectCardProps) {
   const imageSrc = project.image ?? getScreenshotUrl(project.liveUrl)
 
   return (
-    <article className="project-card hover-lift card rounded-lg">
+    <article className="project-card hover-lift rounded-lg">
       <div className="project-card__image">
         <img src={imageSrc} alt={`${project.title} preview`} loading="lazy" />
       </div>
       <div className="project-card__content">
-        <h3 className="project-card__title fw-semibold">{project.title}</h3>
-        <p className="project-card__description text-muted">{project.description}</p>
-        <div className="project-card__tags flex flex-wrap gap-sm">
+        <h3 className="project-card__title fw-semibold text-xl mb-md">{project.title}</h3>
+        <p className="project-card__description text-light text-sm mb-md">{project.description}</p>
+        <div className="project-card__tags flex flex-wrap gap-sm mb-lg">
           {project.tags.map((tag) => (
-            <span key={tag} className="project-card__tag badge">
+            <span key={tag} className="project-card__tag badge rounded-full text-sm fw-medium">
               {tag}
             </span>
           ))}
@@ -31,7 +31,7 @@ function ProjectCard({ project }: ProjectCardProps) {
         <div className="project-card__links flex gap-md">
           <a
             href={project.liveUrl}
-            className="project-card__link flex gap-xs text-muted fw-medium"
+            className="project-card__link flex items-center gap-xs text-muted fw-medium text-sm"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -56,7 +56,7 @@ function ProjectCard({ project }: ProjectCardProps) {
           {hasGithub && (
             <a
               href={project.githubUrl}
-              className="project-card__link flex gap-xs text-muted fw-medium"
+              className="project-card__link flex items-center gap-xs text-muted fw-medium text-sm"
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`View source code for ${project.title} on GitHub`}
@@ -101,7 +101,7 @@ function Projects() {
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
-        <div className="projects__cta">
+        <div className="projects__cta text-center mt-2xl">
           <a
             href="https://github.com/zarda?tab=repositories"
             className="btn btn-outline"

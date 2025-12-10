@@ -12,9 +12,9 @@ interface SkillProps {
 function Skill({ name, level }: SkillProps) {
   return (
     <div className="skill">
-      <div className="skill__header flex-between">
+      <div className="skill__header flex-between mb-sm">
         <span className="skill__name fw-medium">{name}</span>
-        <span className="skill__percentage text-sm text-muted fw-medium">{level}%</span>
+        <span className="skill__percentage text-sm text-light fw-medium">{level}%</span>
       </div>
       <div className="skill__bar rounded-full">
         <div className="skill__progress rounded-full" style={{ width: `${level}%` }}></div>
@@ -30,8 +30,10 @@ interface SkillCategoryProps {
 
 function SkillCategory({ category, items }: SkillCategoryProps) {
   return (
-    <div className="skills__category hover-lift card rounded-lg">
-      <h3 className="skills__category-title text-gradient fw-semibold">{category}</h3>
+    <div className="skills__category hover-lift rounded-lg">
+      <h3 className="skills__category-title text-gradient fw-semibold text-xl mb-lg">
+        {category}
+      </h3>
       <div className="skills__list flex-col gap-md">
         {items.map((skill) => (
           <Skill key={skill.name} name={skill.name} level={skill.level} />
