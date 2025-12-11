@@ -1,14 +1,15 @@
 import { render, screen } from '@testing-library/react'
 import Skills from '../Skills'
-import { skills as skillsData } from '../skillsData'
+import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
 
 describe('Skills', () => {
   it('renders every skill category and item', () => {
     render(<Skills />)
 
-    skillsData.forEach((group) => {
-      expect(screen.getByRole('heading', { level: 3, name: group.category })).toBeInTheDocument()
-      group.items.forEach((skill) => {
+    const skillCategories = PortfolioService.getInstance().getSkillCategories()
+    skillCategories.forEach((category) => {
+      expect(screen.getByRole('heading', { level: 3, name: category.category })).toBeInTheDocument()
+      category.skills.forEach((skill) => {
         expect(screen.getByText(skill.name)).toBeInTheDocument()
       })
     })

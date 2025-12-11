@@ -1,17 +1,15 @@
 import { motion } from 'framer-motion'
-
-import { projects } from './projectsData'
+import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
+import { AnimationPresets } from '@/shared/animations/presets'
+import { Project as ProjectModel } from '@/features/portfolio/models'
 import { getScreenshotUrl } from '../utils'
 
-import { Project } from './projectsData'
-
 interface ProjectCardProps {
-  project: Project
+  project: ProjectModel
 }
 
 function ProjectCard({ project }: ProjectCardProps) {
-  const hasGithub = Boolean(project.githubUrl)
-  const imageSrc = project.image ?? getScreenshotUrl(project.liveUrl)
+  const imageSrc = project.imageUrl ?? getScreenshotUrl(project.liveUrl)
 
   return (
     <article className="project-card hover-lift rounded-lg">
@@ -53,7 +51,7 @@ function ProjectCard({ project }: ProjectCardProps) {
             </svg>
             Live Demo
           </a>
-          {hasGithub && (
+          {project.hasGithub && (
             <a
               href={project.githubUrl}
               className="project-card__link flex items-center gap-xs text-muted fw-medium text-sm"
@@ -85,33 +83,33 @@ function ProjectCard({ project }: ProjectCardProps) {
 }
 
 function Projects() {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 30 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.2 },
-    transition: { duration: 0.6 }
-  }
+  const service = PortfolioService.getInstance()
+  const projects = service.getProjects()
+  const contactInfo = service.getContactInfo()
+  const githubLink = contactInfo.socialLinks.find((link) => link.platform === 'github')
 
   return (
     <section className="projects section" id="projects">
       <div className="container">
-        <motion.h2 className="section-title" {...fadeInUp}>Featured Projects</motion.h2>
+        <motion.h2 className="section-title" {...AnimationPresets.fadeInUp()}>Featured Projects</motion.h2>
         <div className="projects__grid">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
-        <div className="projects__cta text-center mt-2xl">
-          <a
-            href="https://github.com/zarda?tab=repositories"
-            className="btn btn-outline"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="View all of my projects on GitHub"
-          >
-            View All Projects
-          </a>
-        </div>
+        {githubLink && (
+          <div className="projects__cta text-center mt-2xl">
+            <a
+              href={`${githubLink.url}?tab=repositories`}
+              className="btn btn-outline"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View all of my projects on GitHub"
+            >
+              View All Projects
+            </a>
+          </div>
+        )}
       </div>
     </section>
   )

@@ -1,14 +1,15 @@
 import { render, screen, within } from '@testing-library/react'
 import { vi } from 'vitest'
 import Projects from '../Projects'
-import { projects as projectsData } from '../projectsData'
+import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
 import * as utils from '../../utils'
 
 describe('Projects', () => {
   it('renders a card for each project with title and tags', () => {
     render(<Projects />)
 
-    projectsData.forEach((project) => {
+    const projects = PortfolioService.getInstance().getProjects()
+    projects.forEach((project) => {
       const cardHeading = screen.getByRole('heading', { name: project.title })
       expect(cardHeading).toBeInTheDocument()
       project.tags.forEach((tag) => {
@@ -21,7 +22,8 @@ describe('Projects', () => {
     const screenshotSpy = vi.spyOn(utils, 'getScreenshotUrl')
     render(<Projects />)
 
-    const projectWithoutImage = projectsData.find((project) => !project.image)
+    const projects = PortfolioService.getInstance().getProjects()
+    const projectWithoutImage = projects.find((project) => !project.imageUrl)
     expect(projectWithoutImage).toBeDefined()
 
     expect(screenshotSpy).toHaveBeenCalledWith(projectWithoutImage.liveUrl)

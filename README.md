@@ -13,13 +13,17 @@ A responsive personal portfolio website built with React, Vite, and deployed to 
 - Resume section with downloadable PDF and external profile links
 - Contact form
 - Mobile-friendly hamburger menu
+- **Multi-version portfolio support** (switch via URL parameter)
 
 ## Tech Stack
 
-- **Frontend**: React 19, Vite
+- **Frontend**: React 19, Vite, TypeScript
+- **Architecture**: Feature-Based + Clean Architecture with OOP models
 - **Styling**: CSS3 with CSS Variables
+- **Animations**: Framer Motion
 - **Hosting**: Firebase Hosting
 - **CI/CD**: GitHub Actions
+- **Testing**: Vitest + React Testing Library
 
 ## Getting Started
 
@@ -48,6 +52,45 @@ A responsive personal portfolio website built with React, Vite, and deployed to 
    ```
 
 4. Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+## Portfolio Versions
+
+The portfolio supports multiple data versions, allowing you to maintain different portfolio presentations.
+
+### Available Versions
+
+| Version | Description | URL |
+|---------|-------------|-----|
+| `hengtai25` | Production portfolio (default) | `http://localhost:5173/` |
+| `demo` | Demo version with explanatory test data | `http://localhost:5173/?version=demo` |
+
+### Switching Versions
+
+Access different versions via URL parameter:
+```
+http://localhost:5173/?version=demo
+http://localhost:5173/?version=hengtai25
+```
+
+### Creating a New Version
+
+1. Create a new folder under `src/features/portfolio/data/versions/`:
+   ```
+   src/features/portfolio/data/versions/your-version/
+   ├── index.ts      # Portfolio assembly
+   ├── profile.ts    # Personal info
+   ├── skills.ts     # Skills data
+   ├── projects.ts   # Projects data
+   └── contact.ts    # Contact info
+   ```
+
+2. Register the version in `src/features/portfolio/data/index.ts`:
+   ```typescript
+   import { yourPortfolio } from './versions/your-version';
+   PortfolioRegistry.register('your-version', yourPortfolio);
+   ```
+
+3. Access via `?version=your-version`
 
 ## Customization
 
@@ -156,19 +199,46 @@ portfolio/
 │       └── firebase-hosting-pull-request.yml
 ├── public/
 │   ├── favicon.svg
-│   ├── CV_YYYYMMDD.pdf
+│   └── CV_YYYYMMDD.pdf
 ├── src/
+│   ├── core/
+│   │   └── models/
+│   │       └── Entity.ts              # Base entity class
+│   ├── features/
+│   │   └── portfolio/
+│   │       ├── models/                # Domain models (OOP)
+│   │       │   ├── Profile.ts
+│   │       │   ├── Skill.ts
+│   │       │   ├── SkillCategory.ts
+│   │       │   ├── Project.ts
+│   │       │   ├── SocialLink.ts
+│   │       │   ├── ContactInfo.ts
+│   │       │   ├── Portfolio.ts
+│   │       │   └── index.ts
+│   │       ├── services/
+│   │       │   └── PortfolioService.ts  # Singleton service
+│   │       ├── data/
+│   │       │   ├── PortfolioRegistry.ts # Version management
+│   │       │   ├── index.ts
+│   │       │   └── versions/
+│   │       │       ├── hengtai25/       # Production data
+│   │       │       └── demo/            # Demo/test data
+│   │       └── __tests__/
+│   │           └── PortfolioService.test.ts
+│   ├── shared/
+│   │   └── animations/
+│   │       └── presets.ts             # Framer Motion presets
 │   ├── components/
-│   │   ├── About.tsx / About.css
-│   │   ├── Contact.tsx / Contact.css
-│   │   ├── Footer.tsx / Footer.css
-│   │   ├── Header.tsx / Header.css
-│   │   ├── Hero.tsx / Hero.css
-│   │   ├── Projects.tsx / Projects.css
-│   │   ├── Resume.tsx / Resume.css
-│   │   ├── projectsData.ts
-│   │   ├── skillsData.ts
-│   │   └── Skills.tsx / Skills.css
+│   │   ├── About.tsx
+│   │   ├── Contact.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Header.tsx
+│   │   ├── Hero.tsx
+│   │   ├── Projects.tsx
+│   │   ├── Resume.tsx
+│   │   └── Skills.tsx
+│   ├── config/
+│   │   └── themeConfig.ts
 │   ├── assets/
 │   │   └── profile-photo.jpg
 │   ├── preview/
@@ -184,8 +254,29 @@ portfolio/
 ├── firebase.json
 ├── index.html
 ├── package.json
+├── tsconfig.json
+├── PLAN.md
 ├── README.md
 └── vite.config.js
+```
+
+## Architecture
+
+This project uses a **Feature-Based + Clean Architecture** pattern:
+
+- **Core**: Shared infrastructure (base classes, types)
+- **Features**: Bounded contexts (portfolio, auth, admin)
+- **Shared**: Reusable utilities and animations
+- **Components**: UI components that consume data from services
+
+### Data Flow
+
+```
+PortfolioRegistry (registers versions)
+       ↓
+PortfolioService (singleton, version switching)
+       ↓
+Components (Hero, About, Skills, Projects, Contact)
 ```
 
 ## License

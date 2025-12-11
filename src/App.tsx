@@ -18,6 +18,13 @@ import {
   getThemeClass,
 } from './config/themeConfig'
 
+// Initialize portfolio data layer
+import '@/features/portfolio/data'
+import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
+
+// Initialize PortfolioService (auto-detects version from URL or uses default)
+PortfolioService.initialize()
+
 function App() {
   // Initialize season - URL param > stored preference > auto-detect
   const [season] = useState<Season>(() => {

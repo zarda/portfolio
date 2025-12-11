@@ -1,5 +1,12 @@
 import '@testing-library/jest-dom/vitest'
 
+// Initialize portfolio data layer for tests
+import '@/features/portfolio/data'
+import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
+
+// Initialize PortfolioService for all tests
+PortfolioService.initialize()
+
 // Mock matchMedia
 Object.defineProperty(window, 'matchMedia', {
     writable: true,

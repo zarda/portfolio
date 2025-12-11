@@ -1,15 +1,14 @@
 import { motion } from 'framer-motion'
-
-import { skills } from './skillsData'
-
-import { SkillItem as SkillItemType } from './skillsData'
+import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
+import { AnimationPresets } from '@/shared/animations/presets'
+import { Skill as SkillModel, SkillCategory as SkillCategoryModel } from '@/features/portfolio/models'
 
 interface SkillProps {
   name: string
   level: number
 }
 
-function Skill({ name, level }: SkillProps) {
+function SkillItem({ name, level }: SkillProps) {
   return (
     <div className="skill">
       <div className="skill__header flex-between mb-sm">
@@ -24,19 +23,18 @@ function Skill({ name, level }: SkillProps) {
 }
 
 interface SkillCategoryProps {
-  category: string
-  items: SkillItemType[]
+  category: SkillCategoryModel
 }
 
-function SkillCategory({ category, items }: SkillCategoryProps) {
+function SkillCategoryCard({ category }: SkillCategoryProps) {
   return (
     <div className="skills__category hover-lift rounded-lg">
       <h3 className="skills__category-title text-gradient fw-semibold text-xl mb-lg">
-        {category}
+        {category.category}
       </h3>
       <div className="skills__list flex-col gap-md">
-        {items.map((skill) => (
-          <Skill key={skill.name} name={skill.name} level={skill.level} />
+        {category.skills.map((skill: SkillModel) => (
+          <SkillItem key={skill.name} name={skill.name} level={skill.level} />
         ))}
       </div>
     </div>
@@ -44,29 +42,21 @@ function SkillCategory({ category, items }: SkillCategoryProps) {
 }
 
 function Skills() {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 30 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.2 },
-    transition: { duration: 0.6 }
-  }
+  const service = PortfolioService.getInstance()
+  const skillCategories = service.getSkillCategories()
 
   return (
     <section className="skills section" id="skills">
       <div className="container">
-        <motion.h2 className="section-title" {...fadeInUp}>Skills & Technologies</motion.h2>
+        <motion.h2 className="section-title" {...AnimationPresets.fadeInUp()}>Skills & Technologies</motion.h2>
         <motion.div
           className="skills__grid grid-3 gap-lg"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          {...AnimationPresets.fadeInUp(0.2)}
         >
-          {skills.map((skillGroup) => (
-            <SkillCategory
-              key={skillGroup.category}
-              category={skillGroup.category}
-              items={skillGroup.items}
+          {skillCategories.map((category) => (
+            <SkillCategoryCard
+              key={category.category}
+              category={category}
             />
           ))}
         </motion.div>

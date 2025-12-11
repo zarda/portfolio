@@ -1,25 +1,20 @@
 import { motion } from 'framer-motion'
-
-import profilePhoto from '../assets/profile-photo.jpg'
+import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
+import { AnimationPresets } from '@/shared/animations/presets'
 
 function Hero() {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.6 }
-  }
+  const service = PortfolioService.getInstance()
+  const profile = service.getProfile()
 
   return (
     <section className="hero" id="hero">
       <div className="container hero__container">
-        <motion.div className="hero__content" {...fadeInUp}>
-          <p className="hero__greeting text-gradient fw-semibold text-xl mb-sm">Hello, I'm</p>
-          <h1 className="hero__title mb-sm">Hengtai Jan</h1>
-          <h2 className="hero__subtitle fw-semibold mb-lg">Software Engineer</h2>
+        <motion.div className="hero__content" {...AnimationPresets.fadeInUpSmall()}>
+          <p className="hero__greeting text-gradient fw-semibold text-xl mb-sm">{profile.greeting}</p>
+          <h1 className="hero__title mb-sm">{profile.name}</h1>
+          <h2 className="hero__subtitle fw-semibold mb-lg">{profile.title}</h2>
           <p className="hero__description text-light mb-xl">
-            I build exceptional web applications with Angular, React, and modern technologies.
-            Focused on performance, accessibility, and clean architecture.
+            {profile.description}
           </p>
           <div className="hero__buttons flex gap-md flex-wrap">
             <a href="#projects" className="btn btn-primary">
@@ -32,15 +27,12 @@ function Hero() {
         </motion.div>
         <motion.div
           className="hero__image flex-center"
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          {...AnimationPresets.fadeInScale(0.2)}
         >
           <div className="hero__image-wrapper">
             <img
-              src={profilePhoto}
-              alt="Hengtai Jan"
+              src={profile.photoUrl}
+              alt={profile.name}
               className="hero__photo rounded-xl shadow-lg"
             />
           </div>
