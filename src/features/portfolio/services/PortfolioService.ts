@@ -1,17 +1,34 @@
-import { PortfolioRegistry, PortfolioVersion } from '../data/PortfolioRegistry';
+import { PortfolioVersion } from '../data/PortfolioRegistry';
 import { Profile, SkillCategory, Project, ContactInfo, Portfolio } from '../models';
+import { ThemeManager, IThemeManager, ThemeState, Season, ThemeMode } from './ThemeManager';
+import { VersionManager, IVersionManager } from './VersionManager';
+
+// Re-export types for backwards compatibility
+export type { Season, ThemeMode, ThemeState } from './ThemeManager';
+
+type ThemeChangeListener = (theme: ThemeState) => void;
+
+export interface PortfolioServiceConfig {
+  version?: PortfolioVersion;
+  season?: Season;
+  mode?: ThemeMode;
+  themeManager?: IThemeManager;
+  versionManager?: IVersionManager;
+}
 
 export class PortfolioService {
   private static instance: PortfolioService | null = null;
-  private currentVersion: PortfolioVersion;
 
-  private constructor(version: PortfolioVersion) {
-    this.currentVersion = version;
+  private readonly themeManager: IThemeManager;
+  private readonly versionManager: IVersionManager;
+
+  private constructor(config: PortfolioServiceConfig = {}) {
+    this.themeManager = config.themeManager ?? new ThemeManager(config.season, config.mode);
+    this.versionManager = config.versionManager ?? new VersionManager(config.version);
   }
 
-  static initialize(version?: PortfolioVersion): void {
-    const v = version ?? PortfolioRegistry.getVersionFromUrl() ?? PortfolioRegistry.getDefaultVersion();
-    PortfolioService.instance = new PortfolioService(v);
+  static initialize(config: PortfolioServiceConfig = {}): void {
+    PortfolioService.instance = new PortfolioService(config);
   }
 
   static getInstance(): PortfolioService {
@@ -25,39 +42,74 @@ export class PortfolioService {
     return PortfolioService.instance !== null;
   }
 
+  // For testing: allows resetting the singleton
+  static reset(): void {
+    PortfolioService.instance = null;
+  }
+
+  // ============ Version Management (delegated) ============
+
   switchVersion(version: PortfolioVersion): void {
-    this.currentVersion = version;
+    this.versionManager.switchVersion(version);
   }
 
   getCurrentVersion(): PortfolioVersion {
-    return this.currentVersion;
+    return this.versionManager.getCurrentVersion();
   }
 
   getAvailableVersions(): PortfolioVersion[] {
-    return PortfolioRegistry.getAvailableVersions();
+    return this.versionManager.getAvailableVersions();
   }
 
-  private get portfolio(): Portfolio {
-    return PortfolioRegistry.get(this.currentVersion);
-  }
+  // ============ Portfolio Data (delegated) ============
 
   getProfile(): Profile {
-    return this.portfolio.profile;
+    return this.versionManager.getProfile();
   }
 
   getSkillCategories(): SkillCategory[] {
-    return this.portfolio.skillCategories;
+    return this.versionManager.getSkillCategories();
   }
 
   getProjects(): Project[] {
-    return this.portfolio.projects;
+    return this.versionManager.getProjects();
   }
 
   getContactInfo(): ContactInfo {
-    return this.portfolio.contactInfo;
+    return this.versionManager.getContactInfo();
   }
 
   getPortfolio(): Portfolio {
-    return this.portfolio;
+    return this.versionManager.getPortfolio();
+  }
+
+  // ============ Theme Management (delegated) ============
+
+  getTheme(): ThemeState {
+    return this.themeManager.getTheme();
+  }
+
+  getSeason(): Season {
+    return this.themeManager.getSeason();
+  }
+
+  getMode(): ThemeMode {
+    return this.themeManager.getMode();
+  }
+
+  setSeason(season: Season): void {
+    this.themeManager.setSeason(season);
+  }
+
+  setMode(mode: ThemeMode): void {
+    this.themeManager.setMode(mode);
+  }
+
+  toggleMode(): void {
+    this.themeManager.toggleMode();
+  }
+
+  subscribeToThemeChanges(listener: ThemeChangeListener): () => void {
+    return this.themeManager.subscribe(listener);
   }
 }

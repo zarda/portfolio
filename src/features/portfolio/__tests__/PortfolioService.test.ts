@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { PortfolioService } from '../services/PortfolioService';
 import { PortfolioRegistry } from '../data/PortfolioRegistry';
 
@@ -110,6 +110,94 @@ describe('PortfolioService', () => {
       expect(contactInfo.email).toBeDefined();
       expect(contactInfo.location).toBeDefined();
       expect(contactInfo.socialLinks.length).toBeGreaterThan(0);
+    });
+  });
+
+  describe('Theme Management', () => {
+    it('should return current theme state', () => {
+      const service = PortfolioService.getInstance();
+      const theme = service.getTheme();
+
+      expect(theme.season).toBeDefined();
+      expect(theme.mode).toBeDefined();
+      expect(['spring', 'summer', 'autumn', 'winter']).toContain(theme.season);
+      expect(['light', 'dark']).toContain(theme.mode);
+    });
+
+    it('should get season and mode separately', () => {
+      const service = PortfolioService.getInstance();
+
+      const season = service.getSeason();
+      const mode = service.getMode();
+
+      expect(['spring', 'summer', 'autumn', 'winter']).toContain(season);
+      expect(['light', 'dark']).toContain(mode);
+    });
+
+    it('should toggle mode between light and dark', () => {
+      const service = PortfolioService.getInstance();
+      const initialMode = service.getMode();
+
+      service.toggleMode();
+      const toggledMode = service.getMode();
+
+      expect(toggledMode).not.toBe(initialMode);
+      expect(['light', 'dark']).toContain(toggledMode);
+
+      // Toggle back
+      service.toggleMode();
+      expect(service.getMode()).toBe(initialMode);
+    });
+
+    it('should set mode directly', () => {
+      const service = PortfolioService.getInstance();
+      const initialMode = service.getMode();
+
+      service.setMode('dark');
+      expect(service.getMode()).toBe('dark');
+
+      service.setMode('light');
+      expect(service.getMode()).toBe('light');
+
+      // Restore initial mode
+      service.setMode(initialMode);
+    });
+
+    it('should set season directly', () => {
+      const service = PortfolioService.getInstance();
+      const initialSeason = service.getSeason();
+
+      service.setSeason('spring');
+      expect(service.getSeason()).toBe('spring');
+
+      service.setSeason('winter');
+      expect(service.getSeason()).toBe('winter');
+
+      // Restore initial season
+      service.setSeason(initialSeason);
+    });
+
+    it('should notify listeners on theme change', () => {
+      const service = PortfolioService.getInstance();
+      const listener = vi.fn();
+
+      const unsubscribe = service.subscribeToThemeChanges(listener);
+
+      service.toggleMode();
+      expect(listener).toHaveBeenCalledTimes(1);
+      expect(listener).toHaveBeenCalledWith(service.getTheme());
+
+      service.setSeason('summer');
+      expect(listener).toHaveBeenCalledTimes(2);
+
+      unsubscribe();
+
+      // Should not be called after unsubscribe
+      service.toggleMode();
+      expect(listener).toHaveBeenCalledTimes(2);
+
+      // Clean up
+      service.toggleMode(); // restore original mode
     });
   });
 });

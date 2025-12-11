@@ -1,5 +1,5 @@
 import { Profile } from '../../../models';
-import profilePhoto from '../../../../../assets/profile-photo.jpg';
+import profilePhoto from './assets/profile-photo.jpg';
 
 export const profile = new Profile({
   name: 'Hengtai Jan',

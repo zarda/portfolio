@@ -1,6 +1,6 @@
 import { Project } from '../../../models';
-import todoPreview from '../../../../../preview/TodoSharerPreview.png';
-import cartaPreview from '../../../../../preview/CartaVisHomePreview.png';
+import todoPreview from './assets/TodoSharerPreview.png';
+import cartaPreview from './assets/CartaVisHomePreview.png';
 
 export const projects: Project[] = [
   new Project(

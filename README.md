@@ -77,6 +77,7 @@ http://localhost:5173/?version=hengtai25
 1. Create a new folder under `src/features/portfolio/data/versions/`:
    ```
    src/features/portfolio/data/versions/your-version/
+   ├── assets/       # Version-specific images (project previews, etc.)
    ├── index.ts      # Portfolio assembly
    ├── profile.ts    # Personal info
    ├── skills.ts     # Skills data
@@ -216,12 +217,18 @@ portfolio/
 │   │       │   ├── Portfolio.ts
 │   │       │   └── index.ts
 │   │       ├── services/
-│   │       │   └── PortfolioService.ts  # Singleton service
+│   │       │   ├── PortfolioService.ts  # Facade service (singleton)
+│   │       │   ├── ThemeManager.ts      # Theme/season management
+│   │       │   └── VersionManager.ts    # Version/data management
+│   │       ├── hooks/
+│   │       │   └── useTheme.ts          # React hook for theme
 │   │       ├── data/
 │   │       │   ├── PortfolioRegistry.ts # Version management
 │   │       │   ├── index.ts
 │   │       │   └── versions/
 │   │       │       ├── hengtai25/       # Production data
+│   │       │       │   ├── assets/      # Project preview images
+│   │       │       │   └── *.ts         # Data files
 │   │       │       └── demo/            # Demo/test data
 │   │       └── __tests__/
 │   │           └── PortfolioService.test.ts
@@ -239,11 +246,6 @@ portfolio/
 │   │   └── Skills.tsx
 │   ├── config/
 │   │   └── themeConfig.ts
-│   ├── assets/
-│   │   └── profile-photo.jpg
-│   ├── preview/
-│   │   ├── CartaVisHomePreview.png
-│   │   └── TodoSharerPreview.png
 │   ├── App.tsx
 │   ├── utils.ts
 │   ├── index.css
@@ -274,7 +276,11 @@ This project uses a **Feature-Based + Clean Architecture** pattern:
 ```
 PortfolioRegistry (registers versions)
        ↓
-PortfolioService (singleton, version switching)
+PortfolioService (facade singleton)
+├── VersionManager (data access)
+└── ThemeManager (theme/season state)
+       ↓
+React Hooks (useTheme)
        ↓
 Components (Hero, About, Skills, Projects, Contact)
 ```

@@ -1,13 +1,6 @@
 import '@testing-library/jest-dom/vitest'
 
-// Initialize portfolio data layer for tests
-import '@/features/portfolio/data'
-import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
-
-// Initialize PortfolioService for all tests
-PortfolioService.initialize()
-
-// Mock matchMedia
+// Mock matchMedia - must be before PortfolioService initialization
 Object.defineProperty(window, 'matchMedia', {
     writable: true,
     value: (query) => ({
@@ -21,6 +14,13 @@ Object.defineProperty(window, 'matchMedia', {
         dispatchEvent: () => {},
     }),
 });
+
+// Initialize portfolio data layer for tests
+import '@/features/portfolio/data'
+import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
+
+// Initialize PortfolioService for all tests
+PortfolioService.initialize()
 
 // Mock IntersectionObserver
 class IntersectionObserver {
