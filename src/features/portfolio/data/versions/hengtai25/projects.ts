@@ -1,6 +1,4 @@
 import { Project } from '../../../models';
-import todoPreview from './assets/TodoSharerPreview.png';
-import cartaPreview from './assets/CartaVisHomePreview.png';
 
 export const projects: Project[] = [
   new Project(
@@ -9,7 +7,7 @@ export const projects: Project[] = [
       description:
         'A modern task management application built with Angular Server-Side Rendering. Features responsive design, persistent storage, and optimized performance deployed on Google Cloud Run.',
       tags: ['Angular', 'SSR', 'TypeScript', 'Cloud Run'],
-      imageUrl: todoPreview,
+      imageUrl: null,
       liveUrl: 'https://todo-list-478384585653.asia-east1.run.app/',
       githubUrl: 'https://github.com/zarda/ToDo-List-on-Angular-SSR',
     },
@@ -43,7 +41,7 @@ export const projects: Project[] = [
       description:
         'Full-stack web application for astronomical scientists to view and analyze high-resolution imagery. Optimized rendering with WebGL and C++ bindings, achieved 90% API test coverage.',
       tags: ['React', 'TypeScript', 'WebGL', 'C++', 'WebSocket'],
-      imageUrl: cartaPreview,
+      imageUrl: null,
       liveUrl: 'https://cartavis.org/',
       githubUrl: 'https://github.com/CARTAvis',
     },
