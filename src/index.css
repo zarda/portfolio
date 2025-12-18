@@ -146,6 +146,13 @@
   --color-secondary: #a78bfa;
   --color-secondary-light: #c4b5fd;
 
+  --color-background: #fdf2f8;
+  --color-background-alt: #fce7f3;
+  --color-background-elevated: #fbcfe8;
+
+  --glass-bg: rgba(253, 242, 248, 0.8);
+  --glass-border: rgba(236, 72, 153, 0.15);
+
   --gradient-primary: linear-gradient(135deg, #ec4899 0%, #22c55e 100%);
   --gradient-text: linear-gradient(135deg, #ec4899 0%, #a78bfa 100%);
 }
@@ -163,6 +170,9 @@
   --color-background: #1a0f1e;
   --color-background-alt: #2d1f33;
   --color-background-elevated: #3d2a45;
+
+  --glass-bg: rgba(26, 15, 30, 0.85);
+  --glass-border: rgba(244, 114, 182, 0.2);
 
   --gradient-primary: linear-gradient(135deg, #f472b6 0%, #4ade80 100%);
   --gradient-text: linear-gradient(135deg, #f472b6 0%, #c4b5fd 100%);
@@ -182,6 +192,13 @@
   --color-secondary: #eab308;
   --color-secondary-light: #facc15;
 
+  --color-background: #fffbeb;
+  --color-background-alt: #fef3c7;
+  --color-background-elevated: #fde68a;
+
+  --glass-bg: rgba(255, 251, 235, 0.8);
+  --glass-border: rgba(249, 115, 22, 0.15);
+
   --gradient-primary: linear-gradient(135deg, #f97316 0%, #06b6d4 100%);
   --gradient-text: linear-gradient(135deg, #f97316 0%, #eab308 100%);
 }
@@ -199,6 +216,9 @@
   --color-background: #0c1929;
   --color-background-alt: #1a2d3d;
   --color-background-elevated: #2a3d4d;
+
+  --glass-bg: rgba(12, 25, 41, 0.85);
+  --glass-border: rgba(251, 146, 60, 0.2);
 
   --gradient-primary: linear-gradient(135deg, #fb923c 0%, #22d3ee 100%);
   --gradient-text: linear-gradient(135deg, #fb923c 0%, #facc15 100%);
@@ -218,6 +238,13 @@
   --color-secondary: #78350f;
   --color-secondary-light: #92400e;
 
+  --color-background: #fefce8;
+  --color-background-alt: #fef9c3;
+  --color-background-elevated: #fef08a;
+
+  --glass-bg: rgba(254, 252, 232, 0.8);
+  --glass-border: rgba(217, 119, 6, 0.15);
+
   --gradient-primary: linear-gradient(135deg, #d97706 0%, #dc2626 100%);
   --gradient-text: linear-gradient(135deg, #f59e0b 0%, #dc2626 100%);
 }
@@ -235,6 +262,9 @@
   --color-background: #1c1412;
   --color-background-alt: #2d2420;
   --color-background-elevated: #3d342f;
+
+  --glass-bg: rgba(28, 20, 18, 0.85);
+  --glass-border: rgba(245, 158, 11, 0.2);
 
   --gradient-primary: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
   --gradient-text: linear-gradient(135deg, #fbbf24 0%, #f87171 100%);
@@ -254,6 +284,13 @@
   --color-secondary: #64748b;
   --color-secondary-light: #94a3b8;
 
+  --color-background: #f0f9ff;
+  --color-background-alt: #e0f2fe;
+  --color-background-elevated: #bae6fd;
+
+  --glass-bg: rgba(240, 249, 255, 0.8);
+  --glass-border: rgba(59, 130, 246, 0.15);
+
   --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
   --gradient-text: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
 }
@@ -271,6 +308,9 @@
   --color-background: #0c1222;
   --color-background-alt: #1a2535;
   --color-background-elevated: #2a3545;
+
+  --glass-bg: rgba(12, 18, 34, 0.85);
+  --glass-border: rgba(96, 165, 250, 0.2);
 
   --gradient-primary: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
   --gradient-text: linear-gradient(135deg, #60a5fa 0%, #22d3ee 100%);
@@ -1215,10 +1255,6 @@ button {
 
 .header--scrolled {
   box-shadow: var(--shadow-md);
-}
-
-.dark-mode .header {
-  background: rgba(15, 23, 42, 0.85);
 }
 
 /* .header__container replaced with .container .flex-between .h-full utilities */
