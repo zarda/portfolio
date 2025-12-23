@@ -3,18 +3,6 @@ import { Project } from '../../../models';
 export const projects: Project[] = [
   new Project(
     {
-      title: 'ToDo List - Angular SSR',
-      description:
-        'A modern task management application built with Angular Server-Side Rendering. Features responsive design, persistent storage, and optimized performance deployed on Google Cloud Run.',
-      tags: ['Angular', 'SSR', 'TypeScript', 'Cloud Run'],
-      imageUrl: null,
-      liveUrl: 'https://todo-list-478384585653.asia-east1.run.app/',
-      githubUrl: 'https://github.com/zarda/ToDo-List-on-Angular-SSR',
-    },
-    '1'
-  ),
-  new Project(
-    {
       title: 'Google Home Playground',
       description:
         'Web application to enhance developer experience for smart home connectivity. Owned 85% of project deliverables, increased test coverage from 55% to 93%+, and reduced initial load time by 20%.',
@@ -46,5 +34,29 @@ export const projects: Project[] = [
       githubUrl: 'https://github.com/CARTAvis',
     },
     '4'
+  ),
+  new Project(
+    {
+      title: 'ToDo List - Angular SSR',
+      description:
+        'A modern task management application built with Angular Server-Side Rendering. Features responsive design, persistent storage, and optimized performance deployed on Google Cloud Run.',
+      tags: ['Angular', 'SSR', 'Firestore', 'Cloud Run'],
+      imageUrl: null,
+      liveUrl: 'https://todo-list-478384585653.asia-east1.run.app/',
+      githubUrl: 'https://github.com/zarda/ToDo-List-on-Angular-SSR',
+    },
+    '1'
+  ),
+  new Project(
+    {
+      title: 'Kidsterm',
+      description:
+        'An interactive terminal for kids to learn typing and voice commands. Built with React and Web Speech API, featuring multilingual support (i18n) and comprehensive end-to-end testing.',
+      tags: ['React', 'Web Speech API', 'Cloud Hosting', 'E2E'],
+      imageUrl: null,
+      liveUrl: 'https://kidsterm.web.app/',
+      githubUrl: 'https://github.com/zarda/kids-term-front',
+    },
+    '1'
   ),
 ];
