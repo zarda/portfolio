@@ -37,13 +37,13 @@ export const projects: Project[] = [
   ),
   new Project(
     {
-      title: 'ToDo List - Angular SSR',
+      title: 'HomeAcount',
       description:
-        'A modern task management application built with Angular Server-Side Rendering. Features responsive design, persistent storage, and optimized performance deployed on Google Cloud Run.',
-      tags: ['Angular', 'SSR', 'Firestore', 'Cloud Run'],
+        'A personal finance management app built with Angular 21 and Firebase. Features include transaction tracking, budget management, financial reports with PDF export, and AI-powered insights.',
+      tags: ['Angular', 'OAuth', 'Firestore', 'AI'],
       imageUrl: null,
-      liveUrl: 'https://todo-list-478384585653.asia-east1.run.app/',
-      githubUrl: 'https://github.com/zarda/ToDo-List-on-Angular-SSR',
+      liveUrl: 'https://home-accounter.web.app/',
+      githubUrl: 'https://github.com/zarda/home-account',
     },
     '1'
   ),
@@ -56,6 +56,18 @@ export const projects: Project[] = [
       imageUrl: null,
       liveUrl: 'https://kidsterm.web.app/',
       githubUrl: 'https://github.com/zarda/kids-term-front',
+    },
+    '1'
+  ),
+  new Project(
+    {
+      title: 'ToDo List - Angular SSR',
+      description:
+        'A modern task management application built with Angular Server-Side Rendering. Features responsive design, persistent storage, and optimized performance deployed on Google Cloud Run.',
+      tags: ['Angular', 'SSR', 'Firestore', 'Cloud Run'],
+      imageUrl: null,
+      liveUrl: 'https://todo-list-478384585653.asia-east1.run.app/',
+      githubUrl: 'https://github.com/zarda/ToDo-List-on-Angular-SSR',
     },
     '1'
   ),
