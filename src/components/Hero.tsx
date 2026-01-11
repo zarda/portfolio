@@ -17,11 +17,11 @@ function Hero() {
             {profile.description}
           </p>
           <div className="hero__buttons flex gap-md flex-wrap">
-            <a href="#projects" className="btn btn-primary">
-              View My Work
+            <a href={profile.heroPrimaryCta.href} className="btn btn-primary">
+              {profile.heroPrimaryCta.label}
             </a>
-            <a href="#contact" className="btn btn-outline">
-              Get In Touch
+            <a href={profile.heroSecondaryCta.href} className="btn btn-outline">
+              {profile.heroSecondaryCta.label}
             </a>
           </div>
         </motion.div>

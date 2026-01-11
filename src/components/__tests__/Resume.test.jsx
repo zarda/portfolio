@@ -1,23 +1,38 @@
 import { render, screen } from '@testing-library/react'
 import Resume from '../Resume'
+import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
 
 describe('Resume', () => {
-  it('renders resume actions with expected destinations', () => {
+  it('renders resume actions with expected destinations from versioned data', () => {
+    const profile = PortfolioService.getInstance().getProfile()
+    const { resume } = profile
+
     render(<Resume />)
 
     expect(screen.getByRole('heading', { name: /resume/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /download resume/i })).toHaveAttribute(
       'href',
-      '/Hengtai-Jan-Resume.pdf',
+      resume.pdfUrl,
     )
     expect(screen.getByRole('link', { name: /view linkedin profile/i })).toHaveAttribute(
       'href',
-      'https://linkedin.com/in/hengtai-jan-188793b8/',
+      resume.linkedinUrl,
     )
     expect(screen.getByRole('link', { name: /google docs version/i })).toHaveAttribute(
       'href',
-      'https://docs.google.com/document/d/1Uv5L5WsZnbN6Yvo0dMRxeLxhBkDI-HlQw441QdN0Bgs/edit?usp=sharing',
+      resume.docUrl,
     )
+  })
+
+  it('renders resume summary paragraphs from versioned data', () => {
+    const profile = PortfolioService.getInstance().getProfile()
+    const { resume } = profile
+
+    render(<Resume />)
+
+    resume.summaryParagraphs.forEach((paragraph) => {
+      expect(screen.getByText(paragraph)).toBeInTheDocument()
+    })
   })
 })
 

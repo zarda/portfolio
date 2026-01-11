@@ -1,22 +1,23 @@
 import { motion } from 'framer-motion'
+import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
+import { AnimationPresets } from '@/shared/animations/presets'
+import { ResumeInfo } from '@/features/portfolio/models'
 
+interface ResumeActionsProps {
+  resume: ResumeInfo
+}
 
-const RESUME_URL = '/Hengtai-Jan-Resume.pdf'
-const RESUME_DOC_URL =
-  'https://docs.google.com/document/d/1Uv5L5WsZnbN6Yvo0dMRxeLxhBkDI-HlQw441QdN0Bgs/edit?usp=sharing'
-const LINKEDIN_URL = 'https://linkedin.com/in/hengtai-jan-188793b8/'
-
-function ResumeActions() {
+function ResumeActions({ resume }: ResumeActionsProps) {
   return (
     <div className="flex flex-wrap gap-md justify-center mb-md">
-      <a href={RESUME_URL} className="btn btn-primary" download>
+      <a href={resume.pdfUrl} className="btn btn-primary" download>
         Download Resume (PDF)
       </a>
-      <a href={LINKEDIN_URL} className="btn btn-outline" target="_blank" rel="noopener noreferrer">
+      <a href={resume.linkedinUrl} className="btn btn-outline" target="_blank" rel="noopener noreferrer">
         View LinkedIn Profile
       </a>
       <a
-        href={RESUME_DOC_URL}
+        href={resume.docUrl}
         className="btn btn-outline"
         target="_blank"
         rel="noopener noreferrer"
@@ -28,36 +29,24 @@ function ResumeActions() {
 }
 
 function Resume() {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 30 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.3 },
-    transition: { duration: 0.6 }
-  }
+  const service = PortfolioService.getInstance()
+  const profile = service.getProfile()
+  const { resume } = profile
 
   return (
     <section className="resume section" id="resume">
       <div className="container">
-        <motion.h2 className="section-title" {...fadeInUp}>Resume</motion.h2>
+        <motion.h2 className="section-title" {...AnimationPresets.fadeInUp()}>Resume</motion.h2>
         <motion.div
           className="resume__content text-center mx-auto"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          {...AnimationPresets.fadeInUp(0.2)}
         >
           <div className="resume__summary flex-col gap-md text-light mb-xl">
-            <p>
-              Download my full resume for a detailed view of my experience at Google Nest, Academia
-              Sinica, and other roles, including work on smart home tools, astronomical
-              visualization, and large-scale control systems.
-            </p>
-            <p>
-              The PDF includes project highlights, tech stack details, and a concise overview of my
-              academic background and publications.
-            </p>
+            {resume.summaryParagraphs.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
           </div>
-          <ResumeActions />
+          <ResumeActions resume={resume} />
         </motion.div>
       </div>
     </section>

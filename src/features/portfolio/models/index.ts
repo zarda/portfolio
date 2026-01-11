@@ -1,6 +1,6 @@
 // Domain Models
 export { Profile } from './Profile';
-export type { ProfileProps, ProfileStat } from './Profile';
+export type { ProfileProps, ProfileStat, HeroCta, ResumeInfo } from './Profile';
 
 export { Skill } from './Skill';
 export type { SkillProps } from './Skill';

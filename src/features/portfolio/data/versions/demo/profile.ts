@@ -28,4 +28,15 @@ export const profile = new Profile({
     { value: '50+', label: 'Projects Completed', link: 'https://example.com/projects' },
     { value: 'MSc', label: 'Computer Science' },
   ],
+  heroPrimaryCta: { label: 'Explore Projects', href: '#projects' },
+  heroSecondaryCta: { label: 'Contact Me', href: '#contact' },
+  resume: {
+    summaryParagraphs: [
+      'This is a demo resume section. In a real portfolio, this would contain a summary of your professional experience and qualifications.',
+      'The resume section provides quick access to downloadable resume files and links to your professional profiles.',
+    ],
+    pdfUrl: '/demo-resume.pdf', // /public/demo-resume.pdf
+    docUrl: 'https://example.com/resume-doc',
+    linkedinUrl: 'https://linkedin.com/in/demo-user',
+  },
 });

@@ -15,7 +15,19 @@ export const profile = new Profile({
   photoUrl: profilePhoto,
   stats: [
     { value: '8+', label: 'Years Experience' },
-    { value: '700+', label: 'LeetCode Solved', link: 'https://leetcode.com/u/hengtai/' },
+    { value: '750+', label: 'LeetCode Solved', link: 'https://leetcode.com/u/hengtai/' },
     { value: 'PhD', label: 'Physics, NSYSU' },
   ],
+  heroPrimaryCta: { label: 'View My Work', href: '#projects' },
+  heroSecondaryCta: { label: 'Get In Touch', href: '#contact' },
+  resume: {
+    summaryParagraphs: [
+      'Download my full resume for a detailed view of my experience at Google Nest, Academia Sinica, and other roles, including work on smart home tools, astronomical visualization, and large-scale control systems.',
+      'The PDF includes project highlights, tech stack details, and a concise overview of my academic background and publications.',
+    ],
+    pdfUrl: '/CV_20260111.pdf', // /public/CV_20260111.pdf
+    docUrl:
+      'https://docs.google.com/document/d/1Uv5L5WsZnbN6Yvo0dMRxeLxhBkDI-HlQw441QdN0Bgs/edit?usp=sharing',
+    linkedinUrl: 'https://linkedin.com/in/hengtai-jan-188793b8/',
+  },
 });
