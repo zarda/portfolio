@@ -15,7 +15,7 @@ export const profile = new Profile({
   photoUrl: profilePhoto,
   stats: [
     { value: '8+', label: 'Years Experience' },
-    { value: '750+', label: 'LeetCode Solved', link: 'https://leetcode.com/u/hengtai/' },
+    { value: '800+', label: 'LeetCode Solved', link: 'https://leetcode.com/u/hengtai/' },
     { value: 'PhD', label: 'Physics, NSYSU' },
   ],
   heroPrimaryCta: { label: 'View My Work', href: '#projects' },

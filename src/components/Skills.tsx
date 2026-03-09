@@ -1,7 +1,51 @@
 import { motion } from 'framer-motion'
+import {
+  SiAngular,
+  SiReact,
+  SiTypescript,
+  SiHtml5,
+  SiMui,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPython,
+  SiCplusplus,
+  SiGooglecloud,
+  SiGithubactions,
+  SiGit,
+  SiPytorch,
+  SiOpencv,
+} from 'react-icons/si'
+import { TbApi, TbPlugConnected, TbWorld, TbCloud, TbLambda, TbTestPipe, TbCode } from 'react-icons/tb'
+import type { IconType } from 'react-icons'
 import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
 import { AnimationPresets } from '@/shared/animations/presets'
 import { Skill as SkillModel, SkillCategory as SkillCategoryModel } from '@/features/portfolio/models'
+
+const skillIcons: Record<string, IconType> = {
+  Angular: SiAngular,
+  React: SiReact,
+  TypeScript: SiTypescript,
+  'HTML/CSS': SiHtml5,
+  'Material UI': SiMui,
+  'Next.js': SiNextdotjs,
+  'Node.js': SiNodedotjs,
+  Python: SiPython,
+  'C++': SiCplusplus,
+  'RESTful APIs': TbApi,
+  gRPC: TbPlugConnected,
+  WebSocket: TbPlugConnected,
+  GCP: SiGooglecloud,
+  AWS: TbCloud,
+  Serverless: TbLambda,
+  'E2E Testing': TbTestPipe,
+  'CI/CD': SiGithubactions,
+  Git: SiGit,
+  'I18n/A11y': TbWorld,
+  MCP: TbPlugConnected,
+  Cursor: TbCode,
+  'OpenCV (cv2)': SiOpencv,
+  PyTorch: SiPytorch,
+}
 
 interface SkillProps {
   name: string
@@ -9,10 +53,14 @@ interface SkillProps {
 }
 
 function SkillItem({ name, level }: SkillProps) {
+  const Icon = skillIcons[name]
   return (
     <div className="skill">
       <div className="skill__header flex-between mb-sm">
-        <span className="skill__name fw-medium">{name}</span>
+        <span className="skill__name fw-medium">
+          {Icon && <Icon className="skill__icon" aria-hidden />}
+          {name}
+        </span>
         <span className="skill__percentage text-sm text-light fw-medium">{level}%</span>
       </div>
       <div className="skill__bar rounded-full">

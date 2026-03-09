@@ -7,6 +7,7 @@ export const skillCategories: SkillCategory[] = [
     new Skill({ name: 'TypeScript', level: 90 }),
     new Skill({ name: 'HTML/CSS', level: 80 }),
     new Skill({ name: 'Material UI', level: 75 }),
+    new Skill({ name: 'Next.js', level: 40 }),
   ]),
   new SkillCategory('Backend & Infrastructure', [
     new Skill({ name: 'Node.js', level: 70 }),
@@ -16,11 +17,19 @@ export const skillCategories: SkillCategory[] = [
     new Skill({ name: 'gRPC', level: 70 }),
     new Skill({ name: 'WebSocket', level: 70 }),
     new Skill({ name: 'GCP', level: 70 }),
+    new Skill({ name: 'AWS', level: 50 }),
+    new Skill({ name: 'Serverless', level: 40 }),
   ]),
   new SkillCategory('Testing & Tools', [
     new Skill({ name: 'E2E Testing', level: 80 }),
     new Skill({ name: 'CI/CD', level: 70 }),
     new Skill({ name: 'Git', level: 80 }),
     new Skill({ name: 'I18n/A11y', level: 85 }),
+  ]),
+  new SkillCategory('AI & Dev Tools', [
+    new Skill({ name: 'MCP', level: 70 }),
+    new Skill({ name: 'Cursor', level: 80 }),
+    new Skill({ name: 'OpenCV (cv2)', level: 30 }),
+    new Skill({ name: 'PyTorch', level: 20 }),
   ]),
 ];

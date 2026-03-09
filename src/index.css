@@ -1886,6 +1886,13 @@ button {
   color: var(--color-text);
 }
 
+.skill__icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.4rem;
+  font-size: 1.1em;
+}
+
 /* .skill__percentage uses .text-sm .text-light .fw-medium utilities in component */
 
 .skill__bar {

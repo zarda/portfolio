@@ -8,7 +8,7 @@ A responsive personal portfolio website built with React, Vite, and deployed to 
 - Smooth scrolling navigation
 - Hero section with call-to-action
 - About section with stats
-- Skills section with progress bars
+- Skills section with progress bars and technology icons
 - Projects showcase with cards
 - Resume section with downloadable PDF and external profile links
 - Contact form
@@ -18,6 +18,7 @@ A responsive personal portfolio website built with React, Vite, and deployed to 
 ## Tech Stack
 
 - **Frontend**: React 19, Vite, TypeScript
+- **Icons**: react-icons (Simple Icons, Tabler)
 - **Architecture**: Feature-Based + Clean Architecture with OOP models
 - **Styling**: CSS3 with CSS Variables
 - **Animations**: Framer Motion
@@ -243,7 +244,7 @@ portfolio/
 │   │   ├── Hero.tsx
 │   │   ├── Projects.tsx
 │   │   ├── Resume.tsx
-│   │   └── Skills.tsx
+│   │   └── Skills.tsx        # Skills + icon mapping (react-icons)
 │   ├── config/
 │   │   └── themeConfig.ts
 │   ├── App.tsx
