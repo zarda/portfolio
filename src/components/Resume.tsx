@@ -9,7 +9,7 @@ interface ResumeActionsProps {
 
 function ResumeActions({ resume }: ResumeActionsProps) {
   return (
-    <div className="flex flex-wrap gap-md justify-center mb-md">
+    <div className="flex flex-wrap gap-4 justify-center mb-4">
       <a href={resume.pdfUrl} className="btn btn-primary" download>
         Download Resume (PDF)
       </a>
@@ -40,7 +40,7 @@ function Resume() {
           className="resume__content text-center mx-auto"
           {...AnimationPresets.fadeInUp(0.2)}
         >
-          <div className="resume__summary flex-col gap-md text-light mb-xl">
+          <div className="resume__summary flex flex-col gap-4 text-text-light mb-8">
             {resume.summaryParagraphs.map((paragraph: string, index: number) => (
               <p key={index}>{paragraph}</p>
             ))}

@@ -14,24 +14,24 @@ function ProjectCard({ project }: ProjectCardProps) {
   const imageSrc = project.imageUrl ?? getScreenshotUrl(project.liveUrl)
 
   return (
-    <article className="project-card hover-lift rounded-lg">
+    <article className="project-card rounded-lg">
       <div className="project-card__image">
         <img src={imageSrc} alt={`${project.title} preview`} loading="lazy" />
       </div>
       <div className="project-card__content">
-        <h3 className="project-card__title fw-semibold text-xl mb-md">{project.title}</h3>
-        <p className="project-card__description text-light text-sm mb-md">{project.description}</p>
-        <div className="project-card__tags flex flex-wrap gap-sm mb-lg">
+        <h3 className="project-card__title font-semibold text-xl mb-4">{project.title}</h3>
+        <p className="project-card__description text-text-light text-sm mb-4">{project.description}</p>
+        <div className="project-card__tags flex flex-wrap gap-2 mb-6">
           {project.tags.map((tag) => (
-            <span key={tag} className="project-card__tag badge rounded-full text-sm fw-medium">
+            <span key={tag} className="project-card__tag rounded-full text-sm font-medium">
               {tag}
             </span>
           ))}
         </div>
-        <div className="project-card__links flex gap-md">
+        <div className="project-card__links flex gap-4">
           <a
             href={project.liveUrl}
-            className="project-card__link flex items-center gap-xs text-muted fw-medium text-sm"
+            className="project-card__link flex items-center gap-1 text-text-muted font-medium text-sm"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -41,7 +41,7 @@ function ProjectCard({ project }: ProjectCardProps) {
           {project.hasGithub && (
             <a
               href={project.githubUrl}
-              className="project-card__link flex items-center gap-xs text-muted fw-medium text-sm"
+              className="project-card__link flex items-center gap-1 text-text-muted font-medium text-sm"
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`View source code for ${project.title} on GitHub`}
@@ -70,7 +70,7 @@ function Projects() {
           ))}
         </div>
         {githubLink && (
-          <div className="projects__cta text-center mt-2xl">
+          <div className="projects__cta text-center mt-12">
             <a
               href={`${githubLink.url}?tab=repositories`}
               className="btn btn-outline"

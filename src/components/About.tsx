@@ -9,12 +9,12 @@ function About() {
     <section className="about section" id="about">
       <div className="container">
         <motion.h2 className="section-title" {...AnimationPresets.fadeInUp()}>About Me</motion.h2>
-        <div className="about__content grid-2 gap-xl items-center">
+        <div className="about__content items-center">
           <motion.div
             className="about__image"
             {...AnimationPresets.slideInLeft()}
           >
-            <div className="about__image-wrapper rounded-lg shadow-lg hover-scale">
+            <div className="about__image-wrapper rounded-lg shadow-lg transition-all duration-300 hover:scale-[1.02]">
               <img
                 src={profile.photoUrl}
                 alt={profile.name}
@@ -27,13 +27,13 @@ function About() {
             {...AnimationPresets.slideInRight(0.2)}
           >
             {profile.aboutParagraphs.map((paragraph, index) => (
-              <p key={index} className="about__description text-light mb-xl">
+              <p key={index} className="about__description text-text-light mb-8">
                 {paragraph}
               </p>
             ))}
-            <div className="about__stats flex gap-md justify-center">
+            <div className="about__stats flex gap-4 justify-center">
               {profile.stats.map((stat) => (
-                <div key={stat.label} className="about__stat hover-lift text-center rounded-lg">
+                <div key={stat.label} className="about__stat text-center rounded-lg">
                   {stat.link ? (
                     <a
                       href={stat.link}
@@ -41,20 +41,20 @@ function About() {
                       rel="noopener noreferrer"
                       className="about__stat-link"
                     >
-                      <span className="about__stat-number text-gradient fw-bold text-2xl mb-xs">{stat.value}</span>
-                      <span className="about__stat-label text-light text-sm fw-medium">{stat.label}</span>
+                      <span className="about__stat-number text-gradient font-bold text-2xl mb-1">{stat.value}</span>
+                      <span className="about__stat-label text-text-light text-sm font-medium">{stat.label}</span>
                     </a>
                   ) : (
                     <>
-                      <span className="about__stat-number text-gradient fw-bold text-2xl mb-xs">{stat.value}</span>
-                      <span className="about__stat-label text-light text-sm fw-medium">{stat.label}</span>
+                      <span className="about__stat-number text-gradient font-bold text-2xl mb-1">{stat.value}</span>
+                      <span className="about__stat-label text-text-light text-sm font-medium">{stat.label}</span>
                     </>
                   )}
                 </div>
               ))}
             </div>
             <div className="text-center">
-              <a href="#contact" className="btn btn-primary mt-lg">
+              <a href="#contact" className="btn btn-primary mt-6">
                 Let's Talk
               </a>
             </div>

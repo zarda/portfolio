@@ -58,21 +58,21 @@ function Contact() {
     <section className="contact section" id="contact">
       <div className="container">
         <motion.h2 className="section-title" {...AnimationPresets.fadeInUp()}>Get In Touch</motion.h2>
-        <div className="contact__content grid-2 gap-xl">
+        <div className="contact__content grid grid-cols-2 gap-8 max-lg:block">
           <div className="contact__info">
-            <h3 className="text-xl fw-semibold mb-md">Let's talk about your project</h3>
-            <p className="text-muted mb-xl lh-relaxed">
+            <h3 className="text-xl font-semibold mb-4">Let's talk about your project</h3>
+            <p className="text-text-muted mb-8 leading-relaxed">
               I'm always open to discussing new projects, creative ideas, or
               opportunities to be part of your visions.
             </p>
-            <div className="flex-col gap-lg mb-xl">
+            <div className="flex flex-col gap-6 mb-8">
               <div className="info-card">
                 <div className="icon-box" aria-hidden="true">
                   <MdEmail size={24} />
                 </div>
                 <div>
-                  <p className="text-sm text-muted mb-xs">Email</p>
-                  <a href={`mailto:${contactInfo.email}`} className="fw-medium hover:text-primary">
+                  <p className="text-sm text-text-muted mb-1">Email</p>
+                  <a href={`mailto:${contactInfo.email}`} className="font-medium hover:text-primary">
                     {contactInfo.email}
                   </a>
                 </div>
@@ -82,19 +82,19 @@ function Contact() {
                   <MdLocationOn size={24} />
                 </div>
                 <div>
-                  <p className="text-sm text-muted mb-xs">Location</p>
-                  <span className="fw-medium">{contactInfo.location}</span>
+                  <p className="text-sm text-text-muted mb-1">Location</p>
+                  <span className="font-medium">{contactInfo.location}</span>
                 </div>
               </div>
             </div>
-            <div className="flex gap-md">
+            <div className="flex gap-4">
               {contactInfo.socialLinks.map((link) => {
                 const Icon = socialIcons[link.platform]
                 return (
                   <a
                     key={link.platform}
                     href={link.url}
-                    className="social-icon hover-glow"
+                    className="social-icon"
                     aria-label={link.label}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -105,8 +105,8 @@ function Contact() {
               })}
             </div>
           </div>
-          <form className="card rounded-lg shadow-md p-xl" onSubmit={handleSubmit}>
-            <h4 className="text-lg fw-semibold mb-lg text-gradient">Send a Message</h4>
+          <form className="card rounded-lg shadow-md p-8" onSubmit={handleSubmit}>
+            <h4 className="text-lg font-semibold mb-6 text-gradient">Send a Message</h4>
             <div className="form-group">
               <label htmlFor="name" className="form-label">
                 Name
@@ -151,12 +151,12 @@ function Contact() {
                 rows={6}
                 required
               ></textarea>
-              <span className="text-sm text-muted d-block mt-xs">
+              <span className="text-sm text-text-muted block mt-1">
                 {formData.message.length > 0 ? `${formData.message.length} characters` : 'Share your thoughts'}
               </span>
             </div>
             {status && (
-              <div className="flex gap-sm items-center mb-md text-success fw-medium">
+              <div className="flex gap-2 items-center mb-4 text-success font-medium">
                 <MdCheckCircle size={18} aria-hidden="true" />
                 {status}
               </div>

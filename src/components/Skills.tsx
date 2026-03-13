@@ -56,12 +56,12 @@ function SkillItem({ name, level }: SkillProps) {
   const Icon = skillIcons[name]
   return (
     <div className="skill">
-      <div className="skill__header flex-between mb-sm">
-        <span className="skill__name fw-medium">
+      <div className="skill__header flex items-center justify-between mb-2">
+        <span className="skill__name font-medium">
           {Icon && <Icon className="skill__icon" aria-hidden />}
           {name}
         </span>
-        <span className="skill__percentage text-sm text-light fw-medium">{level}%</span>
+        <span className="skill__percentage text-sm text-text-light font-medium">{level}%</span>
       </div>
       <div className="skill__bar rounded-full">
         <div className="skill__progress rounded-full" style={{ width: `${level}%` }}></div>
@@ -76,11 +76,11 @@ interface SkillCategoryProps {
 
 function SkillCategoryCard({ category }: SkillCategoryProps) {
   return (
-    <div className="skills__category hover-lift rounded-lg">
-      <h3 className="skills__category-title text-gradient fw-semibold text-xl mb-lg">
+    <div className="skills__category rounded-lg">
+      <h3 className="skills__category-title text-gradient font-semibold text-xl mb-6">
         {category.category}
       </h3>
-      <div className="skills__list flex-col gap-md">
+      <div className="skills__list flex flex-col gap-4">
         {category.skills.map((skill: SkillModel) => (
           <SkillItem key={skill.name} name={skill.name} level={skill.level} />
         ))}
@@ -97,7 +97,7 @@ function Skills() {
       <div className="container">
         <motion.h2 className="section-title" {...AnimationPresets.fadeInUp()}>Skills & Technologies</motion.h2>
         <motion.div
-          className="skills__grid grid-3 gap-lg"
+          className="skills__grid grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-sm:grid-cols-1"
           {...AnimationPresets.fadeInUp(0.2)}
         >
           {skillCategories.map((category) => (
