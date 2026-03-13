@@ -4,7 +4,7 @@ import Header from '../Header'
 
 describe('Header', () => {
   it('renders navigation links', () => {
-    render(<Header />)
+    render(<Header theme="light" toggleTheme={() => {}} />)
 
     ;['About', 'Skills', 'Projects', 'Resume', 'Contact'].forEach((label) => {
       expect(screen.getByRole('link', { name: label })).toBeInTheDocument()
@@ -13,7 +13,7 @@ describe('Header', () => {
 
   it('toggles the mobile menu button state', async () => {
     const user = userEvent.setup()
-    render(<Header />)
+    render(<Header theme="light" toggleTheme={() => {}} />)
 
     const toggleButton = screen.getByLabelText(/navigation menu/i)
     await user.click(toggleButton)
@@ -27,7 +27,7 @@ describe('Header', () => {
 
   it('closes the mobile menu when a nav link is clicked', async () => {
     const user = userEvent.setup()
-    render(<Header />)
+    render(<Header theme="light" toggleTheme={() => {}} />)
 
     const toggleButton = screen.getByLabelText(/navigation menu/i)
     await user.click(toggleButton)
@@ -40,7 +40,7 @@ describe('Header', () => {
   })
 
   it('applies scrolled class when the page is offset', () => {
-    render(<Header />)
+    render(<Header theme="light" toggleTheme={() => {}} />)
 
     Object.defineProperty(window, 'scrollY', { value: 120, writable: true })
     fireEvent.scroll(window)

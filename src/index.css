@@ -2280,3 +2280,16 @@ button {
     text-align: center;
   }
 }
+
+/* ==========================================
+   UTILITY ADDITIONS
+   ========================================== */
+
+/* Lazy-load section skeleton */
+.section-loading { min-height: 200px; }
+
+/* Inline-style replacements */
+.lh-relaxed { line-height: 1.8; }
+.d-block     { display: block; }
+.p-xl        { padding: var(--space-xl); }
+.mt-xs       { margin-top: var(--space-xs); }

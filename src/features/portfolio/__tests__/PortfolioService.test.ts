@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, afterEach } from 'vitest';
 import { PortfolioService } from '../services/PortfolioService';
 import { PortfolioRegistry } from '../data/PortfolioRegistry';
 
@@ -205,7 +205,8 @@ describe('PortfolioService', () => {
 describe('PortfolioRegistry', () => {
   it('should throw error for non-existent version', () => {
     expect(() => {
-      PortfolioRegistry.get('non-existent-version');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      PortfolioRegistry.get('non-existent-version' as any);
     }).toThrow('Portfolio version "non-existent-version" not found');
   });
 
@@ -215,7 +216,45 @@ describe('PortfolioRegistry', () => {
 
   it('should throw error when setting non-existent version as default', () => {
     expect(() => {
-      PortfolioRegistry.setDefault('invalid-version');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      PortfolioRegistry.setDefault('invalid-version' as any);
     }).toThrow('Cannot set default: version "invalid-version" not registered');
+  });
+});
+
+describe('PortfolioService — unique project IDs', () => {
+  it('should have unique project IDs for hengtai25', () => {
+    const service = PortfolioService.getInstance();
+    service.switchVersion('hengtai25');
+    const projects = service.getProjects();
+    const ids = projects.map((p) => p.id);
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+});
+
+describe('PortfolioRegistry — URL version validation', () => {
+  const originalLocation = window.location;
+
+  afterEach(() => {
+    Object.defineProperty(window, 'location', {
+      configurable: true,
+      value: originalLocation,
+    });
+  });
+
+  it('returns null for an invalid version param', () => {
+    Object.defineProperty(window, 'location', {
+      configurable: true,
+      value: new URL('http://localhost/?version=invalid'),
+    });
+    expect(PortfolioRegistry.getVersionFromUrl()).toBeNull();
+  });
+
+  it('returns a valid version when param matches a registered version', () => {
+    Object.defineProperty(window, 'location', {
+      configurable: true,
+      value: new URL('http://localhost/?version=demo'),
+    });
+    expect(PortfolioRegistry.getVersionFromUrl()).toBe('demo');
   });
 });

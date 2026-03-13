@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
+import { usePortfolio } from '@/features/portfolio/context/PortfolioContext'
 import { AnimationPresets } from '@/shared/animations/presets'
 import { ResumeInfo } from '@/features/portfolio/models'
 
@@ -29,8 +29,7 @@ function ResumeActions({ resume }: ResumeActionsProps) {
 }
 
 function Resume() {
-  const service = PortfolioService.getInstance()
-  const profile = service.getProfile()
+  const { profile } = usePortfolio()
   const { resume } = profile
 
   return (
@@ -42,7 +41,7 @@ function Resume() {
           {...AnimationPresets.fadeInUp(0.2)}
         >
           <div className="resume__summary flex-col gap-md text-light mb-xl">
-            {resume.summaryParagraphs.map((paragraph, index) => (
+            {resume.summaryParagraphs.map((paragraph: string, index: number) => (
               <p key={index}>{paragraph}</p>
             ))}
           </div>
@@ -54,5 +53,3 @@ function Resume() {
 }
 
 export default Resume
-
-

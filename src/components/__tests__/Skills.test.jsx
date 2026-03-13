@@ -1,10 +1,15 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import Skills from '../Skills'
 import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
+import { renderWithPortfolio } from '../../features/portfolio/__tests__/testUtils'
 
 describe('Skills', () => {
+  beforeEach(() => {
+    PortfolioService.reset()
+  })
+
   it('renders every skill category and item', () => {
-    render(<Skills />)
+    renderWithPortfolio(<Skills />)
 
     const skillCategories = PortfolioService.getInstance().getSkillCategories()
     skillCategories.forEach((category) => {
@@ -16,7 +21,7 @@ describe('Skills', () => {
   })
 
   it('applies inline width based on skill level', () => {
-    render(<Skills />)
+    renderWithPortfolio(<Skills />)
 
     const angularElement = screen.getByText('Angular').closest('.skill')
     expect(angularElement).not.toBeNull()
@@ -25,7 +30,7 @@ describe('Skills', () => {
   })
 
   it('renders AI & Dev Tools category and new skills', () => {
-    render(<Skills />)
+    renderWithPortfolio(<Skills />)
 
     expect(screen.getByRole('heading', { level: 3, name: 'AI & Dev Tools' })).toBeInTheDocument()
     expect(screen.getByText('AWS')).toBeInTheDocument()
@@ -38,7 +43,7 @@ describe('Skills', () => {
   })
 
   it('renders an icon for each skill', () => {
-    render(<Skills />)
+    renderWithPortfolio(<Skills />)
 
     const skillItems = document.querySelectorAll('.skill')
     const icons = document.querySelectorAll('.skill__icon')
@@ -46,5 +51,3 @@ describe('Skills', () => {
     expect(icons.length).toBe(skillItems.length)
   })
 })
-
-

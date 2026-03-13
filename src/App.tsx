@@ -1,37 +1,46 @@
+import { lazy, Suspense } from 'react'
 import Header from './components/Header'
-import Hero from './components/Hero'
-import About from './components/About'
-import Skills from './components/Skills'
-import Projects from './components/Projects'
-import Resume from './components/Resume'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
+import { PortfolioProvider, usePortfolio } from '@/features/portfolio/context/PortfolioContext'
 
-// Initialize portfolio data layer and service
+// Registers all portfolio versions into PortfolioRegistry
 import '@/features/portfolio/data'
-import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
-import { useTheme } from '@/features/portfolio/hooks/useTheme'
 
-// Initialize PortfolioService (auto-detects version and theme from URL/preferences)
-PortfolioService.initialize()
+// Lazy-loaded: each section becomes a separate JS chunk
+const Hero     = lazy(() => import('./components/Hero'))
+const About    = lazy(() => import('./components/About'))
+const Skills   = lazy(() => import('./components/Skills'))
+const Projects = lazy(() => import('./components/Projects'))
+const Resume   = lazy(() => import('./components/Resume'))
+const Contact  = lazy(() => import('./components/Contact'))
+const Footer   = lazy(() => import('./components/Footer'))
 
-function App() {
-  const { mode, toggleMode } = useTheme()
-
+// AppShell calls usePortfolio() — must be a descendant of PortfolioProvider
+function AppShell() {
+  const { mode, toggleMode } = usePortfolio()
   return (
     <div className="app">
       <Header theme={mode} toggleTheme={toggleMode} />
       <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Resume />
-        <Contact />
+        <Suspense fallback={<div className="section-loading" aria-busy="true" />}>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Resume />
+          <Contact />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   )
 }
 
-export default App
+export default function App() {
+  return (
+    <PortfolioProvider>
+      <AppShell />
+    </PortfolioProvider>
+  )
+}

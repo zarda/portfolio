@@ -1,4 +1,4 @@
-
+import { NAV_LINKS } from '@/shared/constants/navLinks'
 
 function Footer() {
   const currentYear = new Date().getFullYear()
@@ -11,11 +11,9 @@ function Footer() {
             Portfolio
           </a>
           <nav className="footer__nav flex flex-wrap gap-lg">
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#resume">Resume</a>
-            <a href="#contact">Contact</a>
+            {NAV_LINKS.map((link) => (
+              <a key={link.href} href={link.href}>{link.label}</a>
+            ))}
           </nav>
         </div>
         <div className="footer__bottom flex-between flex-wrap gap-sm">

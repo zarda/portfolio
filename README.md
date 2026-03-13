@@ -208,6 +208,8 @@ portfolio/
 │   │       └── Entity.ts              # Base entity class
 │   ├── features/
 │   │   └── portfolio/
+│   │       ├── context/
+│   │       │   └── PortfolioContext.tsx # React Context + Provider + usePortfolio hook
 │   │       ├── models/                # Domain models (OOP)
 │   │       │   ├── Profile.ts
 │   │       │   ├── Skill.ts
@@ -232,10 +234,14 @@ portfolio/
 │   │       │       │   └── *.ts         # Data files
 │   │       │       └── demo/            # Demo/test data
 │   │       └── __tests__/
-│   │           └── PortfolioService.test.ts
+│   │           ├── PortfolioContext.test.tsx
+│   │           ├── PortfolioService.test.ts
+│   │           └── testUtils.tsx
 │   ├── shared/
-│   │   └── animations/
-│   │       └── presets.ts             # Framer Motion presets
+│   │   ├── animations/
+│   │   │   └── presets.ts             # Framer Motion presets
+│   │   └── constants/
+│   │       └── navLinks.ts            # Navigation link definitions
 │   ├── components/
 │   │   ├── About.tsx
 │   │   ├── Contact.tsx
@@ -245,8 +251,6 @@ portfolio/
 │   │   ├── Projects.tsx
 │   │   ├── Resume.tsx
 │   │   └── Skills.tsx        # Skills + icon mapping (react-icons)
-│   ├── config/
-│   │   └── themeConfig.ts
 │   ├── App.tsx
 │   ├── utils.ts
 │   ├── index.css
@@ -258,7 +262,6 @@ portfolio/
 ├── index.html
 ├── package.json
 ├── tsconfig.json
-├── PLAN.md
 ├── README.md
 └── vite.config.js
 ```
@@ -281,7 +284,7 @@ PortfolioService (facade singleton)
 ├── VersionManager (data access)
 └── ThemeManager (theme/season state)
        ↓
-React Hooks (useTheme)
+PortfolioContext / usePortfolio hook
        ↓
 Components (Hero, About, Skills, Projects, Contact)
 ```

@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
-
+import type { ThemeMode } from '@/features/portfolio/services/ThemeManager'
+import { NAV_LINKS } from '@/shared/constants/navLinks'
 
 interface HeaderProps {
-  theme: string
+  theme: ThemeMode
   toggleTheme: () => void
 }
 
@@ -17,14 +18,6 @@ function Header({ theme, toggleTheme }: HeaderProps) {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  const navLinks = [
-    { href: '#about', label: 'About' },
-    { href: '#skills', label: 'Skills' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#resume', label: 'Resume' },
-    { href: '#contact', label: 'Contact' },
-  ]
 
   const handleNavClick = () => {
     setIsMenuOpen(false)
@@ -42,7 +35,7 @@ function Header({ theme, toggleTheme }: HeaderProps) {
           aria-label="Primary"
         >
           <ul className="header__nav-list flex gap-xl">
-            {navLinks.map((link) => (
+            {NAV_LINKS.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}

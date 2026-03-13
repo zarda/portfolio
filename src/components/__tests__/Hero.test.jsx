@@ -1,13 +1,17 @@
-import { render, screen } from '@testing-library/react'
-import Hero from '../Hero'
+import { screen } from '@testing-library/react'
 import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
+import { renderWithPortfolio } from '../../features/portfolio/__tests__/testUtils'
+import Hero from '../Hero'
 
 describe('Hero', () => {
+  beforeEach(() => {
+    PortfolioService.reset()
+  })
+
   it('shows primary introduction content from versioned data', () => {
+    renderWithPortfolio(<Hero />)
+
     const profile = PortfolioService.getInstance().getProfile()
-
-    render(<Hero />)
-
     expect(
       screen.getByRole('heading', { level: 1, name: new RegExp(profile.name, 'i') }),
     ).toBeInTheDocument()
@@ -19,10 +23,9 @@ describe('Hero', () => {
   })
 
   it('renders call-to-action links from versioned data', () => {
+    renderWithPortfolio(<Hero />)
+
     const profile = PortfolioService.getInstance().getProfile()
-
-    render(<Hero />)
-
     expect(
       screen.getByRole('link', { name: new RegExp(profile.heroPrimaryCta.label, 'i') }),
     ).toHaveAttribute('href', profile.heroPrimaryCta.href)
@@ -32,5 +35,3 @@ describe('Hero', () => {
     expect(screen.getByText(/scroll down/i)).toBeInTheDocument()
   })
 })
-
-

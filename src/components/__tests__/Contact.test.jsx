@@ -1,10 +1,16 @@
-import { render, screen, fireEvent, act } from '@testing-library/react'
+import { screen, fireEvent, act } from '@testing-library/react'
 import { vi } from 'vitest'
 import Contact from '../Contact'
+import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
+import { renderWithPortfolio } from '../../features/portfolio/__tests__/testUtils'
 
 const originalLocation = window.location
 
 describe('Contact', () => {
+  beforeEach(() => {
+    PortfolioService.reset()
+  })
+
   afterEach(() => {
     vi.useRealTimers()
     Object.defineProperty(window, 'location', {
@@ -20,7 +26,7 @@ describe('Contact', () => {
       value: { href: '' },
     })
 
-    render(<Contact />)
+    renderWithPortfolio(<Contact />)
 
     fireEvent.change(screen.getByLabelText(/name/i), { target: { value: 'Jane Doe' } })
     fireEvent.change(screen.getByLabelText(/email/i), { target: { value: 'jane@example.com' } })
@@ -42,7 +48,7 @@ describe('Contact', () => {
   })
 
   it('exposes static contact channels', () => {
-    render(<Contact />)
+    renderWithPortfolio(<Contact />)
 
     expect(screen.getByRole('link', { name: /hengtaijan@gmail.com/i })).toHaveAttribute(
       'href',
@@ -58,5 +64,3 @@ describe('Contact', () => {
     )
   })
 })
-
-

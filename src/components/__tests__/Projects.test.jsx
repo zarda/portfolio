@@ -1,12 +1,17 @@
-import { render, screen, within } from '@testing-library/react'
+import { screen, within } from '@testing-library/react'
 import { vi } from 'vitest'
 import Projects from '../Projects'
 import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
 import * as utils from '../../utils'
+import { renderWithPortfolio } from '../../features/portfolio/__tests__/testUtils'
 
 describe('Projects', () => {
+  beforeEach(() => {
+    PortfolioService.reset()
+  })
+
   it('renders a card for each project with title and tags', () => {
-    render(<Projects />)
+    renderWithPortfolio(<Projects />)
 
     const projects = PortfolioService.getInstance().getProjects()
     projects.forEach((project) => {
@@ -20,7 +25,7 @@ describe('Projects', () => {
 
   it('falls back to generated screenshot URLs when no image is provided', () => {
     const screenshotSpy = vi.spyOn(utils, 'getScreenshotUrl')
-    render(<Projects />)
+    renderWithPortfolio(<Projects />)
 
     const projects = PortfolioService.getInstance().getProjects()
     const projectWithoutImage = projects.find((project) => !project.imageUrl)
@@ -36,5 +41,3 @@ describe('Projects', () => {
     screenshotSpy.mockRestore()
   })
 })
-
-

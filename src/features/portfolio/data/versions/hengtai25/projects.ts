@@ -45,7 +45,7 @@ export const projects: Project[] = [
       liveUrl: 'https://home-accounter.web.app/',
       githubUrl: 'https://github.com/zarda/home-account',
     },
-    '1'
+    '5'
   ),
   new Project(
     {
@@ -57,7 +57,7 @@ export const projects: Project[] = [
       liveUrl: 'https://kidsterm.web.app/',
       githubUrl: 'https://github.com/zarda/kids-term-front',
     },
-    '1'
+    '6'
   ),
   new Project(
     {
@@ -69,6 +69,6 @@ export const projects: Project[] = [
       liveUrl: 'https://todo-list-478384585653.asia-east1.run.app/',
       githubUrl: 'https://github.com/zarda/ToDo-List-on-Angular-SSR',
     },
-    '1'
+    '7'
   ),
 ];

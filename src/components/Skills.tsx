@@ -17,7 +17,7 @@ import {
 } from 'react-icons/si'
 import { TbApi, TbPlugConnected, TbWorld, TbCloud, TbLambda, TbTestPipe, TbCode } from 'react-icons/tb'
 import type { IconType } from 'react-icons'
-import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
+import { usePortfolio } from '@/features/portfolio/context/PortfolioContext'
 import { AnimationPresets } from '@/shared/animations/presets'
 import { Skill as SkillModel, SkillCategory as SkillCategoryModel } from '@/features/portfolio/models'
 
@@ -90,8 +90,7 @@ function SkillCategoryCard({ category }: SkillCategoryProps) {
 }
 
 function Skills() {
-  const service = PortfolioService.getInstance()
-  const skillCategories = service.getSkillCategories()
+  const { skillCategories } = usePortfolio()
 
   return (
     <section className="skills section" id="skills">

@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion'
-import { PortfolioService } from '@/features/portfolio/services/PortfolioService'
+import { usePortfolio } from '@/features/portfolio/context/PortfolioContext'
 import { AnimationPresets } from '@/shared/animations/presets'
 
 function About() {
-  const service = PortfolioService.getInstance()
-  const profile = service.getProfile()
+  const { profile } = usePortfolio()
 
   return (
     <section className="about section" id="about">

@@ -1,10 +1,10 @@
 import { Portfolio } from '../models';
 
-export type PortfolioVersion = 'default' | 'v2024' | string;
+export type PortfolioVersion = 'hengtai25' | 'demo';
 
 export class PortfolioRegistry {
   private static portfolios: Map<PortfolioVersion, Portfolio> = new Map();
-  private static defaultVersion: PortfolioVersion = 'default';
+  private static defaultVersion: PortfolioVersion = 'hengtai25';
 
   static register(version: PortfolioVersion, portfolio: Portfolio): void {
     this.portfolios.set(version, portfolio);
@@ -33,7 +33,10 @@ export class PortfolioRegistry {
   static getVersionFromUrl(): PortfolioVersion | null {
     if (typeof window === 'undefined') return null;
     const params = new URLSearchParams(window.location.search);
-    return params.get('version') as PortfolioVersion | null;
+    const raw = params.get('version');
+    if (!raw) return null;
+    const available = PortfolioRegistry.getAvailableVersions();
+    return (available as string[]).includes(raw) ? (raw as PortfolioVersion) : null;
   }
 
   static getDefaultVersion(): PortfolioVersion {
