@@ -10,12 +10,18 @@ interface HeaderProps {
 function Header({ theme, toggleTheme }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      const scrollTop = window.scrollY
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
+      setIsScrolled(scrollTop > 50)
+      setScrollProgress(progress)
     }
-    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -24,7 +30,12 @@ function Header({ theme, toggleTheme }: HeaderProps) {
   }
 
   return (
-    <header className={`header glass ${isScrolled ? 'header--scrolled' : ''}`} role="banner">
+    <header
+      className={`header glass ${isScrolled ? 'header--scrolled' : ''}`}
+      role="banner"
+      style={{ ['--scroll-progress' as string]: `${scrollProgress}%` }}
+    >
+      <div className="header__progress" aria-hidden="true" />
       <div className="container flex items-center justify-between h-full">
         <a href="#" className="header__logo text-gradient font-bold text-2xl">
           Portfolio

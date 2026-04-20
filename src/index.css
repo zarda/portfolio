@@ -89,8 +89,11 @@
   --app-shadow-glow-lg: 0 0 40px rgba(var(--color-primary-rgb), 0.4);
 
   /* Layout */
-  --max-width: 1200px;
-  --header-height: 70px;
+  --max-width: 1280px;
+  --max-width-narrow: 880px;
+  --header-height: 72px;
+  --section-padding-y: 6rem;
+  --section-gap: clamp(2rem, 4vw, 3.5rem);
 
   /* Glass effect */
   --glass-bg: rgba(255, 255, 255, 0.7);
@@ -373,12 +376,43 @@
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 clamp(1rem, 4vw, 2.5rem);
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: var(--max-width-narrow);
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 2.5rem);
 }
 
 .section {
-  padding: 4rem 0;
+  padding: var(--section-padding-y) 0;
   position: relative;
+}
+
+.section + .section {
+  border-top: 1px solid color-mix(in srgb, var(--app-color-border) 55%, transparent);
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--app-color-primary);
+  margin-bottom: 0.75rem;
+}
+
+.section-eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 2px;
+  background: var(--gradient-primary);
+  border-radius: 9999px;
 }
 
 @supports (-webkit-touch-callout: none) {
@@ -388,11 +422,12 @@
 }
 
 .section-title {
-  font-size: 2.25rem;
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
   font-weight: 700;
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
   position: relative;
+  letter-spacing: -0.02em;
   background: var(--gradient-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -402,11 +437,11 @@
 .section-title::after {
   content: '';
   position: absolute;
-  bottom: -12px;
+  bottom: -14px;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
+  width: 72px;
+  height: 3px;
   background: var(--gradient-primary);
   border-radius: 9999px;
 }
@@ -740,11 +775,23 @@
   width: 100%;
   height: var(--header-height);
   background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
   z-index: 1000;
   border-bottom: 1px solid var(--glass-border);
-  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.header__progress {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  width: var(--scroll-progress, 0%);
+  background: var(--gradient-primary);
+  border-radius: 0 9999px 9999px 0;
+  transition: width 0.1s linear;
+  pointer-events: none;
 }
 
 .header--scrolled {
@@ -937,8 +984,8 @@
 
 .hero__container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(2.5rem, 5vw, 5rem);
   align-items: center;
   position: relative;
   z-index: 1;
@@ -1671,19 +1718,19 @@
 
 .section-loading { min-height: 200px; }
 
+@media (max-width: 992px) {
+  :root {
+    --section-padding-y: 4.5rem;
+  }
+}
+
 @media (max-width: 768px) {
-  .section {
-    padding: 3rem 0;
+  :root {
+    --section-padding-y: 3.5rem;
   }
 
   .section-title {
     font-size: 1.875rem;
-    margin-bottom: 2rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .container {
-    padding: 0 1rem;
+    margin-bottom: 2.25rem;
   }
 }
