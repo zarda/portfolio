@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, afterEach } from 'vitest';
-import { fetchSolvedCount } from '../LeetCodeService';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { fetchSolvedCount, getSolvedCount, readSolvedCache } from '../LeetCodeService';
 
 function mockFetch(impl: () => Promise<unknown> | unknown) {
   const fn = vi.fn((..._args: unknown[]) => Promise.resolve(impl()));
@@ -51,5 +51,37 @@ describe('fetchSolvedCount', () => {
     const fn = mockFetch(() => ok({ totalSolved: 903 }));
     expect(await fetchSolvedCount('')).toBeNull();
     expect(fn).not.toHaveBeenCalled();
+  });
+});
+
+describe('getSolvedCount (dedup + cache)', () => {
+  beforeEach(() => localStorage.clear());
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    vi.restoreAllMocks();
+  });
+
+  it('returns the count and writes it to the cache', async () => {
+    mockFetch(() => ok({ totalSolved: 903 }));
+    expect(await getSolvedCount('hengtai')).toBe(903);
+    expect(readSolvedCache('hengtai')).toBe(903);
+  });
+
+  it('dedupes concurrent callers into a single request', async () => {
+    const fn = mockFetch(() => ok({ totalSolved: 903 }));
+    const [a, b] = await Promise.all([getSolvedCount('hengtai'), getSolvedCount('hengtai')]);
+    expect(a).toBe(903);
+    expect(b).toBe(903);
+    expect(fn).toHaveBeenCalledTimes(1);
+  });
+
+  it('returns null and does not cache on failure', async () => {
+    vi.stubGlobal('fetch', vi.fn(() => Promise.reject(new Error('offline'))));
+    expect(await getSolvedCount('hengtai')).toBeNull();
+    expect(readSolvedCache('hengtai')).toBeNull();
+  });
+
+  it('readSolvedCache returns null when nothing is cached', () => {
+    expect(readSolvedCache('nobody')).toBeNull();
   });
 });
