@@ -26,7 +26,8 @@ describe('About', () => {
     expect(await screen.findByText('903')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /about me/i })).toBeInTheDocument()
     expect(screen.getByText(/software engineer with a phd/i)).toBeInTheDocument()
-    expect(screen.getByText('8+')).toBeInTheDocument()
+    const expectedYears = `${new Date().getFullYear() - 2018}+`
+    expect(screen.getByText(expectedYears)).toBeInTheDocument()
     expect(screen.getByText(/physics, nsysu/i)).toBeInTheDocument()
   })
 
