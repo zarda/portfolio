@@ -1,6 +1,11 @@
 import { Profile } from '../../../models';
 import profilePhoto from './assets/profile-photo.jpg';
 
+// Professional development started in 2018; derive years of experience so the
+// stat stays current without manual edits.
+const CAREER_START_YEAR = 2018;
+const yearsOfExperience = Math.max(0, new Date().getFullYear() - CAREER_START_YEAR);
+
 export const profile = new Profile({
   name: 'Hengtai Jan',
   title: 'Software Engineer',
@@ -14,8 +19,13 @@ export const profile = new Profile({
   ],
   photoUrl: profilePhoto,
   stats: [
-    { value: '8+', label: 'Years Experience' },
-    { value: '800+', label: 'LeetCode Solved', link: 'https://leetcode.com/u/hengtai/' },
+    { value: `${yearsOfExperience}+`, label: 'Years Experience' },
+    {
+      value: '900+',
+      label: 'LeetCode Solved',
+      link: 'https://leetcode.com/u/hengtai/',
+      live: { source: 'leetcode', username: 'hengtai' },
+    },
     { value: 'PhD', label: 'Physics, NSYSU' },
   ],
   heroPrimaryCta: { label: 'View My Work', href: '#projects' },

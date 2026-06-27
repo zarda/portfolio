@@ -1,7 +1,17 @@
+export interface LiveStatSource {
+  /** Data source to fetch a live value from. */
+  source: 'leetcode';
+  /** Username on that platform. */
+  username: string;
+}
+
 export interface ProfileStat {
+  /** Static value, also used as the fallback while a live value loads or if it fails. */
   value: string;
   label: string;
   link?: string;
+  /** When set, the value is refreshed live in the browser from the given source. */
+  live?: LiveStatSource;
 }
 
 export interface HeroCta {

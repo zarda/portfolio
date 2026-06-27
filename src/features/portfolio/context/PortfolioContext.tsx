@@ -12,6 +12,7 @@ import type { PortfolioServiceConfig } from '../services/PortfolioService';
 import type { ThemeState, Season, ThemeMode } from '../services/ThemeManager';
 import type { PortfolioVersion } from '../data/PortfolioRegistry';
 import type { Profile, SkillCategory, Project, ContactInfo } from '../models';
+import { getSolvedCount } from '../services/LeetCodeService';
 
 // ── Context value shape ───────────────────────────────────────────────────────
 
@@ -73,6 +74,17 @@ export function PortfolioProvider({ children, config = {} }: PortfolioProviderPr
     const unsubscribe = service.subscribeToThemeChanges(setTheme);
     return unsubscribe;
   }, [service]);
+
+  // Warm live stat values (e.g. LeetCode) as early as possible — this provider
+  // is in the main bundle, so the request starts while the lazy section that
+  // renders the value is still downloading.
+  useEffect(() => {
+    for (const stat of profile.stats) {
+      if (stat.live?.source === 'leetcode') {
+        getSolvedCount(stat.live.username);
+      }
+    }
+  }, [profile]);
 
   const switchVersion = useCallback(
     (v: PortfolioVersion) => {
