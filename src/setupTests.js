@@ -42,6 +42,10 @@ class IntersectionObserver {
 
 global.IntersectionObserver = IntersectionObserver;
 
+// Preserve the real fetch so the opt-in live-network smoke (RUN_LIVE_SMOKE=1) can
+// reach the real LeetCode mirror.
+globalThis.realFetch = globalThis.fetch;
+
 // Prevent component tests from hitting the network (e.g. the live LeetCode fetch).
 // The service swallows this rejection and falls back to the static value.
 // Tests that exercise the live path override this with vi.stubGlobal('fetch', ...).
