@@ -24,6 +24,6 @@ describe('About', () => {
     const leetCodeLink = screen.getByRole('link', { name: /leetcode solved/i })
     expect(leetCodeLink).toHaveAttribute('href', 'https://leetcode.com/u/hengtai/')
     expect(leetCodeLink).toHaveAttribute('target', '_blank')
-    expect(leetCodeLink).toHaveTextContent('800+')
+    expect(leetCodeLink).toHaveTextContent('900+')
   })
 })
