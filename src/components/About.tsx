@@ -1,6 +1,38 @@
 import { motion } from 'framer-motion'
 import { usePortfolio } from '@/features/portfolio/context/PortfolioContext'
+import type { ProfileStat } from '@/features/portfolio/models'
+import { useLeetCodeSolved } from '@/features/portfolio/hooks/useLeetCodeSolved'
 import { AnimationPresets } from '@/shared/animations/presets'
+
+/** A single stat. When `stat.live` is set, the value is refreshed live in the browser. */
+function StatItem({ stat }: { stat: ProfileStat }) {
+  const { value } = useLeetCodeSolved(stat.live)
+  const display = value != null ? String(value) : stat.value
+
+  const content = (
+    <>
+      <span className="about__stat-number text-gradient font-bold text-2xl mb-1">{display}</span>
+      <span className="about__stat-label text-text-light text-sm font-medium">{stat.label}</span>
+    </>
+  )
+
+  return (
+    <div className="about__stat text-center rounded-lg">
+      {stat.link ? (
+        <a
+          href={stat.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="about__stat-link"
+        >
+          {content}
+        </a>
+      ) : (
+        content
+      )}
+    </div>
+  )
+}
 
 function About() {
   const { profile } = usePortfolio()
@@ -33,24 +65,7 @@ function About() {
             ))}
             <div className="about__stats flex gap-4 justify-center">
               {profile.stats.map((stat) => (
-                <div key={stat.label} className="about__stat text-center rounded-lg">
-                  {stat.link ? (
-                    <a
-                      href={stat.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="about__stat-link"
-                    >
-                      <span className="about__stat-number text-gradient font-bold text-2xl mb-1">{stat.value}</span>
-                      <span className="about__stat-label text-text-light text-sm font-medium">{stat.label}</span>
-                    </a>
-                  ) : (
-                    <>
-                      <span className="about__stat-number text-gradient font-bold text-2xl mb-1">{stat.value}</span>
-                      <span className="about__stat-label text-text-light text-sm font-medium">{stat.label}</span>
-                    </>
-                  )}
-                </div>
+                <StatItem key={stat.label} stat={stat} />
               ))}
             </div>
             <div className="text-center">
